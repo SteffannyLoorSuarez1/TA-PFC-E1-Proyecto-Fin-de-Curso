@@ -1,114 +1,101 @@
-<mxfile host="drawio" type="device">
+<mxfile host="Electron">
   <diagram id="c4-contexto-srei" name="C4 - Contexto">
-    <mxGraphModel dx="1400" dy="900" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1740" pageHeight="1060" math="0" shadow="0">
+    <mxGraphModel dx="1586" dy="783" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1220" pageHeight="800" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="titulo" value="Diagrama de contexto de SREI" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#1A1A1A;" vertex="1" parent="1">
-          <mxGeometry x="40" y="26" width="900" height="38" as="geometry" />
+        <mxCell id="titulo" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=26;fontStyle=1;fontColor=#1A1A1A;" value="Diagrama de contexto de SREI" vertex="1">
+          <mxGeometry height="36" width="900" x="40" y="20" as="geometry" />
         </mxCell>
-        <mxCell id="subtitulo" value="Modelo C4 · Nivel 1: quién usa SREI y con qué sistemas externos se comunica" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=15;fontColor=#555555;" vertex="1" parent="1">
-          <mxGeometry x="40" y="64" width="900" height="26" as="geometry" />
+        <mxCell id="subtitulo" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=18;fontColor=#444444;" value="Modelo C4 · Nivel 1 — SREI: Sistema Web para el Registro de Eventos Interculturales" vertex="1">
+          <mxGeometry height="26" width="900" x="40" y="56" as="geometry" />
         </mxCell>
-        <object placeholders="1" c4Name="Docente organizador" c4Type="Persona" c4Description="Propone eventos interculturales, sigue el estado de sus propuestas y genera imágenes con IA." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="docente">
-          <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="1">
-            <mxGeometry x="330" y="120" width="230" height="190" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Coordinador de carrera" c4Type="Persona" c4Description="Aprueba, rechaza o pide correcciones a las propuestas; gestiona los eventos y consulta estadísticas." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="coordinador">
-          <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="1">
-            <mxGeometry x="735" y="120" width="230" height="190" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Decano de la facultad" c4Type="Persona" c4Description="Supervisa los eventos de la facultad, asigna usuarios con privilegios administrativos y consulta informes." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="decano">
-          <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="1">
-            <mxGeometry x="1140" y="120" width="230" height="190" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Estudiante" c4Type="Persona" c4Description="Estudiante de la UTEQ que asiste a los eventos: los consulta, se inscribe, confirma su asistencia y comenta." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="estudiante">
-          <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="1">
-            <mxGeometry x="80" y="460" width="230" height="190" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Usuario externo" c4Type="Persona" c4Description="Persona ajena a la UTEQ que se registra, consulta los eventos y confirma su asistencia." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="externo">
-          <mxCell style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#6C6477;strokeColor=#4D4D4D;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;metaEdit=1;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="1">
-            <mxGeometry x="1390" y="460" width="230" height="190" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="SREI" c4Type="Sistema de software" c4Description="Sistema Web para el Registro de Eventos Interculturales de la UTEQ: centraliza su gestión, planificación y difusión." label="&lt;font style=&quot;font-size: 22px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="srei">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;metaEdit=1;fontSize=11;spacingLeft=10;spacingRight=10;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-            <mxGeometry x="670" y="490" width="360" height="180" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Servicio de IA generativa" c4Type="Sistema externo" c4Description="Crea imágenes de arte y cultura a partir de una descripción escrita." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="ia">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#77717F;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#5E5966;metaEdit=1;fontSize=11;spacingLeft=10;spacingRight=10;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-            <mxGeometry x="470" y="800" width="250" height="130" as="geometry" />
-          </mxCell>
-        </object>
-        <object placeholders="1" c4Name="Redes sociales de la UTEQ" c4Type="Sistema externo" c4Description="Cuentas de la universidad en TikTok, Facebook, Instagram, etc." label="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;%c4Name%&lt;/b&gt;&lt;/font&gt;&lt;div&gt;[%c4Type%]&lt;/div&gt;&lt;br&gt;&lt;div&gt;&lt;font style=&quot;font-size: 12px&quot; color=&quot;#F2F2F2&quot;&gt;%c4Description%&lt;/font&gt;&lt;/div&gt;" id="redes">
-          <mxCell style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#77717F;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#5E5966;metaEdit=1;fontSize=11;spacingLeft=10;spacingRight=10;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="1">
-            <mxGeometry x="980" y="800" width="250" height="130" as="geometry" />
-          </mxCell>
-        </object>
-        <mxCell id="r-docente" value="Envía propuestas de evento, consulta&lt;br&gt;su estado y genera imágenes con IA" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.2;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="docente" target="srei">
-          <mxGeometry relative="1" as="geometry" x="-0.25" />
+        <mxCell id="metadatos" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#666666;" value="Autor: Washington Apunte&amp;nbsp; &amp;nbsp;Fecha: 2026-11-21&amp;nbsp; Versión: 1.3" vertex="1">
+          <mxGeometry height="22" width="900" x="40" y="84" as="geometry" />
         </mxCell>
-        <mxCell id="r-coordinador" value="Aprueba, rechaza o pide correcciones&lt;br&gt;de propuestas y consulta estadísticas" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="coordinador" target="srei">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="docente" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Docente organizador&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Persona]" vertex="1">
+          <mxGeometry height="72" width="220" x="160" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="r-decano" value="Supervisa eventos, asigna usuarios&lt;br&gt;administrativos y consulta informes" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.8;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="decano" target="srei">
-          <mxGeometry relative="1" as="geometry" x="-0.25" />
+        <mxCell id="coordinador" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Coordinador de carrera&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Persona]" vertex="1">
+          <mxGeometry height="72" width="220" x="500" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="r-estudiante" value="Consulta eventos, se inscribe,&lt;br&gt;confirma asistencia y comenta" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=1;exitY=0.6316;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="estudiante" target="srei">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="decano" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Decano de la facultad&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Persona]" vertex="1">
+          <mxGeometry height="72" width="220" x="840" y="130" as="geometry" />
         </mxCell>
-        <mxCell id="r-externo" value="Se registra, consulta eventos&lt;br&gt;y confirma asistencia" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=0;exitY=0.6316;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" edge="1" parent="1" source="externo" target="srei">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="estudiante" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Estudiante&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Persona]" vertex="1">
+          <mxGeometry height="72" width="220" x="40" y="386" as="geometry" />
         </mxCell>
-        <mxCell id="r-ia" value="Envía la descripción del docente&lt;br&gt;y recibe la imagen generada" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=0.25;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="srei" target="ia">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="externo" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Usuario externo&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Persona externa a la UTEQ]" vertex="1">
+          <mxGeometry height="72" width="220" x="960" y="386" as="geometry" />
         </mxCell>
-        <mxCell id="r-redes" value="Publica automáticamente&lt;br&gt;cada evento nuevo" style="endArrow=blockThin;endFill=1;endSize=14;html=1;rounded=0;fontSize=12;fontColor=#333333;strokeColor=#707070;strokeWidth=1.5;labelBackgroundColor=#FFFFFF;exitX=0.75;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="srei" target="redes">
-          <mxGeometry relative="1" as="geometry" />
+        <mxCell id="srei" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4C9A84;strokeWidth=3;fontSize=14;fontColor=#1A1A1A;spacingLeft=12;spacingRight=12;" value="&lt;font style=&quot;font-size: 22px&quot;&gt;&lt;b&gt;SREI&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Sistema de software]&lt;br&gt;&lt;br&gt;Gestiona, aprueba y publica los eventos interculturales de la UTEQ" vertex="1">
+          <mxGeometry height="140" width="340" x="440" y="352" as="geometry" />
         </mxCell>
-        <mxCell id="leyenda" value="Leyenda" style="rounded=1;arcSize=6;absoluteArcSize=1;whiteSpace=wrap;html=1;fillColor=#FAFAFA;strokeColor=#BDBDBD;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;align=left;spacingLeft=14;spacingTop=6;fontSize=14;fontStyle=1;fontColor=#333333;" vertex="1" parent="1">
-          <mxGeometry x="1390" y="770" width="300" height="236" as="geometry" />
+        <mxCell id="ia" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;dashed=1;dashPattern=6 4;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="&lt;font style=&quot;font-size: 16px&quot;&gt;&lt;b&gt;Servicio de IA generativa&lt;/b&gt;&lt;/font&gt;&lt;br&gt;[Sistema externo]" vertex="1">
+          <mxGeometry height="78" width="270" x="475" y="632" as="geometry" />
         </mxCell>
-        <mxCell id="ley-forma-0" value="" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#083F75;strokeColor=#06315C;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="leyenda">
-          <mxGeometry x="24.0" y="41.0" width="24" height="28" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-texto-0" value="Persona de la UTEQ" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#333333;" vertex="1" parent="leyenda">
-          <mxGeometry x="70" y="36" width="220" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-forma-1" value="" style="html=1;fontSize=11;dashed=0;whiteSpace=wrap;fillColor=#6C6477;strokeColor=#4D4D4D;fontColor=#ffffff;shape=mxgraph.c4.person2;align=center;spacingLeft=8;spacingRight=8;spacingTop=12;points=[[0.5,0,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0]];" vertex="1" parent="leyenda">
-          <mxGeometry x="24.0" y="81.0" width="24" height="28" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-texto-1" value="Persona externa a la UTEQ" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#333333;" vertex="1" parent="leyenda">
-          <mxGeometry x="70" y="76" width="220" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-forma-2" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#1061B0;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#0D5091;fontSize=11;spacingLeft=10;spacingRight=10;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="leyenda">
-          <mxGeometry x="16.0" y="123.0" width="40" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-texto-2" value="Sistema en estudio (SREI)" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#333333;" vertex="1" parent="leyenda">
-          <mxGeometry x="70" y="116" width="220" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-forma-3" value="" style="rounded=1;whiteSpace=wrap;html=1;labelBackgroundColor=none;fillColor=#77717F;fontColor=#ffffff;align=center;arcSize=10;strokeColor=#5E5966;fontSize=11;spacingLeft=10;spacingRight=10;points=[[0.25,0,0],[0.5,0,0],[0.75,0,0],[1,0.25,0],[1,0.5,0],[1,0.75,0],[0.75,1,0],[0.5,1,0],[0.25,1,0],[0,0.75,0],[0,0.5,0],[0,0.25,0]];" vertex="1" parent="leyenda">
-          <mxGeometry x="16.0" y="163.0" width="40" height="24" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-texto-3" value="Sistema externo: SREI lo usa,&lt;br&gt;pero no lo construye" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#333333;" vertex="1" parent="leyenda">
-          <mxGeometry x="70" y="156" width="220" height="38" as="geometry" />
-        </mxCell>
-        <mxCell id="ley-flecha" value="" style="endArrow=blockThin;endFill=1;endSize=10;html=1;rounded=0;strokeColor=#707070;strokeWidth=1.5;" edge="1" parent="leyenda">
-          <mxGeometry width="50" height="50" relative="1" as="geometry">
-            <mxPoint x="14" y="215" as="sourcePoint" />
-            <mxPoint x="58" y="215" as="targetPoint" />
+        <mxCell id="r-docente" edge="1" parent="1" source="docente" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;fontSize=14;fontColor=#1A1A1A;strokeColor=#000000;strokeWidth=1.4;labelBackgroundColor=none;align=right;verticalAlign=middle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.15;entryY=0;entryDx=0;entryDy=0;" target="srei" value="Envía propuestas y&lt;br&gt;genera imágenes con IA">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="-36.8" as="offset" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="ley-texto-flecha" value="Relación: el verbo dice para&lt;br&gt;qué se comunican" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=12;fontColor=#333333;" vertex="1" parent="leyenda">
-          <mxGeometry x="70" y="196" width="220" height="38" as="geometry" />
+        <mxCell id="r-coordinador" edge="1" parent="1" source="coordinador" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;fontSize=14;fontColor=#1A1A1A;strokeColor=#000000;strokeWidth=1.4;labelBackgroundColor=none;align=left;verticalAlign=middle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="srei" value="Aprueba o rechaza&lt;br&gt;propuestas de evento">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="12" as="offset" />
+          </mxGeometry>
         </mxCell>
-        <mxCell id="respaldo" value="Respaldo en el artículo de SREI: las personas son los actores del diagrama de casos de uso general (el asistente puede ser estudiante o usuario externo, CU06).&lt;br&gt;Servicio de IA: SyRS-007 y CU09 · Redes sociales: SyRS-004 · SREI no se conecta con el SGA de la UTEQ." style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=11;fontColor=#808080;" vertex="1" parent="1">
-          <mxGeometry x="40" y="958" width="1300" height="36" as="geometry" />
+        <mxCell id="r-decano" edge="1" parent="1" source="decano" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;fontSize=14;fontColor=#1A1A1A;strokeColor=#000000;strokeWidth=1.4;labelBackgroundColor=none;align=left;verticalAlign=middle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.85;entryY=0;entryDx=0;entryDy=0;" target="srei" value="Supervisa eventos, consulta informes&lt;br&gt;y asigna usuarios administrativos">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="36.8" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r-estudiante" edge="1" parent="1" source="estudiante" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;fontSize=14;fontColor=#1A1A1A;strokeColor=#000000;strokeWidth=1.4;labelBackgroundColor=none;align=center;verticalAlign=bottom;exitX=1;exitY=0.5;exitDx=0;exitDy=0;entryX=0;entryY=0.5;entryDx=0;entryDy=0;" target="srei" value="Consulta eventos y&lt;br&gt;confirma asistencia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r-externo" edge="1" parent="1" source="externo" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;fontSize=14;fontColor=#1A1A1A;strokeColor=#000000;strokeWidth=1.4;labelBackgroundColor=none;align=center;verticalAlign=bottom;exitX=0;exitY=0.5;exitDx=0;exitDy=0;entryX=1;entryY=0.5;entryDx=0;entryDy=0;" target="srei" value="Se registra y&lt;br&gt;confirma asistencia">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint y="-6" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="r-ia" edge="1" parent="1" source="srei" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;fontSize=14;fontColor=#1A1A1A;strokeColor=#000000;strokeWidth=1.4;labelBackgroundColor=none;align=left;verticalAlign=middle;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" target="ia" value="Envía la descripción&lt;br&gt;y recibe la imagen">
+          <mxGeometry relative="1" as="geometry">
+            <mxPoint x="12" as="offset" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="leyenda" parent="1" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#999999;container=1;collapsible=0;recursiveResize=0;verticalAlign=top;align=left;spacingLeft=14;spacingTop=6;fontSize=15;fontStyle=1;fontColor=#1A1A1A;" value="Leyenda" vertex="1">
+          <mxGeometry height="176" width="220" x="960" y="560" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-forma-0" parent="leyenda" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="" vertex="1">
+          <mxGeometry height="24" width="40" x="14" y="43" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-texto-0" parent="leyenda" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#1A1A1A;" value="Persona" vertex="1">
+          <mxGeometry height="30" width="150" x="66" y="40" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-forma-1" parent="leyenda" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#4C9A84;strokeWidth=3;fontSize=14;fontColor=#1A1A1A;" value="" vertex="1">
+          <mxGeometry height="24" width="40" x="14" y="75" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-texto-1" parent="leyenda" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#1A1A1A;" value="Sistema en estudio" vertex="1">
+          <mxGeometry height="30" width="150" x="66" y="72" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-forma-2" parent="leyenda" style="rounded=0;whiteSpace=wrap;html=1;fillColor=#FFFFFF;strokeColor=#000000;strokeWidth=1.5;dashed=1;dashPattern=6 4;fontSize=14;fontColor=#1A1A1A;spacingLeft=8;spacingRight=8;" value="" vertex="1">
+          <mxGeometry height="24" width="40" x="14" y="107" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-texto-2" parent="leyenda" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#1A1A1A;" value="Sistema externo" vertex="1">
+          <mxGeometry height="30" width="150" x="66" y="104" as="geometry" />
+        </mxCell>
+        <mxCell id="ley-flecha" edge="1" parent="leyenda" style="endArrow=classic;endFill=1;endSize=9;html=1;rounded=0;strokeColor=#000000;strokeWidth=1.4;" value="">
+          <mxGeometry height="50" relative="1" width="50" as="geometry">
+            <mxPoint x="14" y="151" as="sourcePoint" />
+            <mxPoint x="54" y="151" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="ley-texto-rel" parent="leyenda" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=14;fontColor=#1A1A1A;" value="Relación" vertex="1">
+          <mxGeometry height="30" width="150" x="66" y="136" as="geometry" />
+        </mxCell>
+        <mxCell id="fuente" parent="1" style="text;html=1;whiteSpace=wrap;strokeColor=none;fillColor=none;align=left;verticalAlign=middle;fontSize=13;fontColor=#808080;" value="Fuente: elaboración propia a partir del levantamiento y del artículo de SREI" vertex="1">
+          <mxGeometry height="22" width="640" x="40" y="750" as="geometry" />
         </mxCell>
       </root>
     </mxGraphModel>
