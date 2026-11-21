@@ -1,0 +1,94 @@
+
+\section{Contexto y problema}
+
+\subsection{Resumen ejecutivo}
+
+El Sistema de Registro de Eventos Interculturales (SREI) es un proyecto que busca facilitar la organización y gestión de los eventos interculturales de la Universidad Técnica Estatal de Quevedo (UTEQ). La propuesta surge de la necesidad de contar con un espacio donde se pueda manejar de forma ordenada la información de los eventos, desde que un docente presenta una propuesta hasta que se realiza la actividad y se registra la participación de los asistentes.
+
+Para conocer mejor esta situación, se realizó un levantamiento de información mediante entrevistas semiestructuradas a cuatro personas relacionadas con este proceso: la coordinadora de la carrera de Software, el decano de la Facultad de Ciencias de la Computación, una docente de la Facultad de Ciencias de la Educación con experiencia en la gestión de eventos y un estudiante de la carrera de Software. Cada participante aportó una perspectiva diferente sobre la forma en que deberían organizarse y gestionarse estas actividades.
+
+Entre las necesidades identificadas se encuentran el envío digital de propuestas, la revisión y aprobación de solicitudes, la consulta de su estado y la administración de la información de los eventos. También se planteó la importancia de facilitar la inscripción de los participantes, confirmar su asistencia y disponer de información estadística sobre las actividades realizadas.
+
+A partir de estos resultados, se propone desarrollar una aplicación web que reúna estas funciones y permita organizar sus responsabilidades mediante servicios independientes. La distribución de los componentes busca facilitar el mantenimiento y la evolución del sistema, además de permitir que sus diferentes partes puedan desarrollarse y desplegarse de manera organizada.
+
+Durante el periodo académico se trabajará progresivamente en la construcción de esta solución. La primera etapa establece el problema, los objetivos, los requisitos y la arquitectura inicial. En las siguientes entregas se desarrollarán los servicios, la comunicación entre ellos, el manejo de datos y las pruebas necesarias para comprobar su funcionamiento.
+
+De esta manera, el SREI pretende ofrecer una herramienta que responda a las necesidades identificadas durante las entrevistas y que facilite tanto el trabajo de quienes organizan los eventos como la participación de estudiantes y personas externas a la universidad.
+
+\subsection{Antecedentes y contexto institucional}
+
+El proyecto SREI se plantea para la Universidad Técnica Estatal de Quevedo, en el contexto de la organización y participación en eventos interculturales. En estas actividades intervienen diferentes personas, desde las autoridades y responsables de coordinación hasta los docentes que organizan los eventos y los estudiantes que participan en ellos.
+
+Para conocer las necesidades de estos grupos, se realizó un levantamiento de información mediante cuatro entrevistas semiestructuradas. Los participantes fueron la coordinadora de la carrera de Software, el decano de la Facultad de Ciencias de la Computación, una docente de la Facultad de Ciencias de la Educación que cuenta con experiencia en la gestión de eventos dentro de esa facultad y un estudiante de la carrera de Software.
+
+Las entrevistas permitieron conocer distintas necesidades según las responsabilidades de cada participante. Mientras que las autoridades y la coordinación se enfocaron principalmente en la revisión, administración y supervisión de los eventos, la docente aportó desde su experiencia en la organización de estas actividades. Por su parte, el estudiante permitió conocer las necesidades de quienes participan en los eventos.
+
+\subsection{Descripción del problema}
+
+La organización de un evento intercultural requiere coordinar varias actividades. Primero se debe presentar una propuesta, después revisarla y aprobarla, preparar su difusión y, finalmente, facilitar la participación de las personas interesadas. En este proceso intervienen distintos responsables, por lo que es importante mantener la información organizada y permitir que cada uno conozca el estado de las actividades que tiene a su cargo.
+
+Durante las entrevistas se identificó la necesidad de facilitar el envío digital de propuestas, consultar el estado de las solicitudes y gestionar la información de los eventos. También se señalaron aspectos relacionados con la inscripción de participantes, la confirmación de asistencia y la consulta de estadísticas después de realizar las actividades.
+
+Estas necesidades muestran que hace falta una herramienta que reúna la información y facilite el seguimiento de las distintas etapas de gestión. Por ello, el problema que busca atender el SREI es la falta de un mecanismo centralizado que permita organizar estos procesos y mantener una comunicación más clara entre quienes proponen, administran y participan en los eventos.
+
+El informe de entrevistas no contiene mediciones cuantitativas sobre los tiempos empleados, los costos o la cantidad de errores del procedimiento actual. Por esta razón, no se presentan cifras como resultados comprobados; estos datos deberán obtenerse mediante mediciones adicionales si se requiere establecer una línea base.
+
+\subsection{Identificación de los interesados}
+
+A partir de las entrevistas realizadas se identificaron cuatro perfiles principales que tienen relación directa con el funcionamiento del sistema:
+
+\begin{itemize}
+
+    \item \textbf{Coordinación de la carrera de Software:} necesita recibir las propuestas de eventos, revisarlas y aprobarlas o rechazarlas. También requiere gestionar la información de los eventos y consultar estadísticas que permitan conocer los resultados de las actividades realizadas.
+
+    \item \textbf{Decanato de la Facultad de Ciencias de la Computación:} necesita supervisar la gestión de los eventos, controlar la asignación de usuarios con privilegios administrativos y disponer de informes estadísticos sobre las actividades desarrolladas.
+
+    \item \textbf{Docentes organizadores de eventos:} necesitan enviar sus propuestas de manera digital, incluir la información correspondiente y consultar el estado de las solicitudes para conocer cómo avanza su revisión. También manifestaron interés en contar con herramientas de apoyo para la creación de contenido visual.
+
+    \item \textbf{Estudiantes de la carrera de Software y usuarios externos:} necesitan consultar los eventos disponibles, registrarse para participar y confirmar su asistencia a las actividades programadas.
+
+\end{itemize}
+
+
+\subsection{Objetivos del proyecto}
+
+\subsubsection{Objetivo general}
+
+Desarrollar un sistema web distribuido para apoyar la gestión de eventos interculturales de la Universidad Técnica Estatal de Quevedo, facilitando el registro de propuestas, su revisión y aprobación, la administración de eventos y la participación de estudiantes y usuarios externos.
+
+\subsubsection{Objetivos específicos}
+
+\begin{enumerate}
+
+    \item \textbf{Identificar y documentar las necesidades de los interesados} mediante el análisis de las entrevistas y la revisión de los requisitos existentes, para establecer las funcionalidades que debe cubrir el sistema.
+
+    \textit{Indicador:} Porcentaje de requisitos identificados que cuentan con una fuente documentada y trazabilidad.
+
+    \item \textbf{Diseñar una arquitectura distribuida} que permita separar las principales responsabilidades del sistema y establecer mecanismos de comunicación entre sus servicios.
+
+    \textit{Indicador:} Número de servicios definidos e integrados de acuerdo con la arquitectura propuesta.
+
+    \item \textbf{Implementar las funcionalidades principales del sistema} para gestionar propuestas, eventos, usuarios e inscripciones, de acuerdo con los requisitos establecidos.
+
+    \textit{Indicador:} Porcentaje de funcionalidades implementadas que superan sus respectivas pruebas de aceptación.
+
+    \item \textbf{Verificar el funcionamiento y la calidad de la solución} mediante pruebas de integración y evaluación de los requisitos funcionales y no funcionales.
+
+    \textit{Indicador:} Porcentaje de casos de prueba ejecutados satisfactoriamente respecto del total de casos definidos.
+
+\end{enumerate}
+
+
+\subsection{Trabajos relacionados}
+
+Para el desarrollo del SREI se revisaron investigaciones relacionadas con la administración de eventos y el uso de aplicaciones web en contextos culturales y universitarios. Estos trabajos permiten conocer algunas soluciones que ya se han desarrollado y tomar como referencia sus funcionalidades y enfoques de implementación.
+
+Ogbiti y Jumai (2024) presentan un sistema web para la gestión de eventos que permite realizar actividades como la creación de eventos, el registro de participantes y el envío de notificaciones. La propuesta utiliza tecnologías web y una base de datos para facilitar la administración de las actividades. En las pruebas realizadas con datos de muestra, los autores reportan que el sistema permitió gestionar eventos y registros de participantes, además de proporcionar actualizaciones en tiempo real. Este trabajo resulta de interés para el SREI porque aborda funciones relacionadas con la organización y participación en eventos. Sin embargo, el proyecto que se desarrolla para la UTEQ también contempla la gestión de propuestas y su revisión dentro del entorno institucional \cite{ogbiti2024}.
+
+Por otra parte, Chaturvedi et al. (2024) desarrollan CU-EVENTS, una plataforma orientada a la gestión de eventos universitarios. El sistema reúne funcionalidades como el registro de usuarios, la publicación de eventos, la inscripción de estudiantes, el seguimiento de asistencia mediante códigos QR y la generación de certificados de participación. Además, propone una arquitectura de tres capas que separa la presentación, la lógica de aplicación y la base de datos. Esta investigación aporta una referencia importante para el SREI, especialmente en la organización de usuarios y el seguimiento de la participación estudiantil. La diferencia principal está en que SREI también busca atender las necesidades de presentación y revisión de propuestas de eventos interculturales en la universidad \cite{chaturvedi2024}.
+
+En el contexto ecuatoriano, Argudo-Piedra y Sañay-Sañay (2025) presentan una aplicación web para la administración y coordinación de eventos culturales en la Casa Cultural de Cuenca. La solución permite centralizar actividades como la gestión de usuarios, las reservas de salas, el control de inventarios y la programación de eventos mediante un calendario interactivo. Para su desarrollo se utilizaron el marco AUP y el modelo de calidad FURPS+, además de tecnologías como React, Node.js y Express. Los resultados descritos muestran que la aplicación permitió organizar estos procesos desde una misma plataforma y facilitar la administración de las actividades culturales. Este trabajo tiene una relación cercana con el SREI por su orientación hacia la gestión cultural en Ecuador. No obstante, ambos proyectos responden a contextos diferentes, ya que el SREI está dirigido a la organización de eventos interculturales dentro de una institución universitaria \cite{argudo2025}.
+
+A partir de la revisión de estas investigaciones se observa que existen propuestas que facilitan la creación de eventos, el registro de participantes, la difusión de actividades y la administración de información. También se identifican diferentes formas de organizar sus componentes, desde aplicaciones web con bases de datos hasta arquitecturas estructuradas por capas.
+
+Estos aportes sirven como referencia para el desarrollo del SREI. Sin embargo, el proyecto plantea atender un contexto institucional específico, en el que también es necesario considerar la presentación de propuestas, su revisión y aprobación, la administración de los eventos y el registro de la participación. Por esta razón, se busca integrar estas necesidades en una solución web distribuida, tomando en cuenta los resultados del levantamiento realizado con los interesados de la UTEQ.
