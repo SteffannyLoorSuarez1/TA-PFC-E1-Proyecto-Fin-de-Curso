@@ -28,6 +28,11 @@ SREI se relaciona con un servicio externo de inteligencia artificial generativa,
 
 \end{figure}
 
+<<<<<<< HEAD
+=======
+\subsection{Contenedores}
+La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 21, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace \mbox{INT-01}, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
+>>>>>>> origin/main
 
 
 \subsection{Tecnologías utilizadas}
@@ -205,7 +210,6 @@ RNF-05 & Capacidad de interacción & Durante la evaluación de usabilidad, solic
 RNF-06 & Mantenibilidad (modularidad) & Ejecutar \texttt{servicio-eventos} y \texttt{servicio-consulta} como procesos separados; comprobar la respuesta del proveedor y el uso de esa respuesta por el consumidor. & Respuesta HTTP del proveedor y resultado obtenido por el consumidor. & El proveedor responde correctamente y el consumidor procesa la respuesta mediante \mbox{INT-01}. & Definido por el equipo; relacionado con las consecuencias de modularidad del ADR-001. \\
 
 \end{longtable}
-
 }
 
 
@@ -359,3 +363,31 @@ R-05 & El servicio externo de IA generativa tarda demasiado o deja de responder 
 \end{longtable}
 
 }
+
+\subsection{Resultados de las mediciones del prototipo}
+\label{sec:resultados}
+Medimos tres requisitos sobre el prototipo actual, en local, en el equipo WASHING-PC. Las pruebas se hicieron el 22/11/2026, entre las 17:41 y las 18:02, con PowerShell 5.1, Java 21.0.13 y Spring Boot 4.1.3. El prototipo solo implementa \mbox{INT-01}, con una respuesta mínima y sin base de datos, así que estos tiempos no representan al sistema completo. Por eso \mbox{RNF-01} se volverá a medir en la Entrega~2, con la confirmación de asistencia. Las capturas están en \texttt{evidencias/ejecucion/}. Las de \texttt{washington-01} a \texttt{washington-03} muestran que los dos servicios arrancan y que \mbox{INT-01} responde. La Tabla~\ref{tab:resultados} resume las mediciones.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Resultados de las mediciones del prototipo (22/11/2026, WASHING-PC). Fuente: elaboración propia.}
+\label{tab:resultados}
+\begin{tabular}{p{0.09\textwidth} p{0.43\textwidth} p{0.18\textwidth} p{0.20\textwidth}}
+\toprule
+RNF & Lo medido & Estado & Evidencia \\
+\midrule
+\mbox{RNF-01} & 30 peticiones GET a /api\slash consultas\slash evento, después de una de calentamiento. Promedio 0.0046~s y máximo 0.0148~s (umbral: máximo 1.0~s, deseable 0.1~s). & Cumple & \texttt{washington-04} \\
+\mbox{RNF-06} & Con solo servicio-eventos encendido, GET a /api\slash eventos\slash prueba respondió 200. Con servicio-eventos apagado, servicio-consulta arrancó sola en el puerto~8081. & Cumple & \texttt{washington-05}, \texttt{washington-06} y \texttt{washington-07} \\
+\mbox{RNF-02} & Con servicio-eventos apagado, las 5 peticiones a /api\slash consultas\slash evento recibieron un error 500, entre 0.005 y 0.16~s. servicio-consulta siguió respondiendo. & No se cumple todavía. Falta el 503 con mensaje claro (\mbox{R-04}). & \texttt{washington-07} \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+
+\subsection{Uso de inteligencia artificial en esta sección}
+\label{sec:uso-ia-washington}
+Para esta sección usé Claude Sonnet 5.5 (Anthropic). La usé como guía para el manejo de comandos de GitHub y la navegación dentro del repositorio, el uso de comandos en PowerShell, la verificación de ortografía y gramática en la redacción del informe, y como apoyo en los comandos necesarios para ejecutar pruebas y diagnosticar errores durante el desarrollo.
+
+Lo que hice y comprobé por mi cuenta: Ejecutar directamente todos los comandos en PowerShell y GitHub, navegar y gestionar los archivos del repositorio, correr las pruebas locales, corregir los errores reportados, capturar las evidencias de funcionamiento y validar la redacción final de la sección.
