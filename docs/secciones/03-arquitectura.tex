@@ -54,3 +54,31 @@ así que hay que pedirlos por la API. Y como los servicios se llaman de forma s�
 servicio-consulta no puede completar la consulta y el usuario ve un error.
 
 Las opciones consideradas y la decisión completa están en el ADR-001.
+
+\subsection{Requisitos no funcionales}
+La Tabla~\ref{tab:rnf} resume qué se mide en SREI, cómo se prueba y qué umbral debe cumplir cada requisito. Los umbrales salen del artículo de SREI cuando este da un número, y los demás los define el equipo, como se indica en cada fila. El artículo clasifica algunos requisitos con categorías distintas a las de ISO/IEC 25010:2023, por eso aquí se reclasificaron: NRNF-002 pasa de rendimiento a fiabilidad, y NRNF-005, de compatibilidad a flexibilidad. Además, el artículo habla de usabilidad (NRNF-001), que en la edición 2023 de la norma se llama capacidad de interacción.
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{p{1.4cm} p{2.5cm} p{3.3cm} p{2.5cm} p{2.3cm} p{2.3cm}}
+\caption{Requisitos no funcionales de SREI (ISO/IEC 25010:2023). Fuente: elaboración propia.}\label{tab:rnf}\\
+\toprule
+ID & Característica & Condición de prueba & Métrica & Umbral & Fuente \\
+\midrule
+\endfirsthead
+\toprule
+ID & Característica & Condición de prueba & Métrica & Umbral & Fuente \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+RNF-01 & Eficiencia de desempeño (comportamiento temporal) & Con servicio-eventos y servicio-consulta corriendo en local, enviar desde PowerShell 30 peticiones GET a /api\slash consultas\slash evento, después de una petición de calentamiento. Medición sobre el prototipo \mbox{INT-01}. En la Entrega 2 se mide la confirmación de asistencia. & Tiempo de respuesta de cada petición, en segundos. Se reportan el promedio y el máximo. & Máximo 1.0~s por petición (deseable 0.1~s). & PERS-002 / NRNF-006 (artículo de SREI, Tabla~15). \\
+RNF-02 & Fiabilidad (tolerancia a fallos) & Con servicio-eventos detenido y servicio-consulta corriendo, enviar 5 peticiones GET a /api\slash consultas\slash evento (\mbox{INT-01}). Requisito por implementar: hoy el prototipo devuelve un error 500 sin mensaje propio (\mbox{ADR-001}, seguimiento). & Código HTTP y mensaje que recibe el usuario, y tiempo hasta recibirlos, en segundos. & Respuesta 503 con mensaje claro en máximo 2~s, sin que se caiga servicio-consulta. & PERS-001 / NRNF-002 (artículo de SREI, Tabla~15). Umbral definido por el equipo. \\
+RNF-03 & Flexibilidad (adaptabilidad) & Abrir la aplicación web en un celular Android con Chrome, a 360~px de ancho, y en una laptop con Chrome y con Firefox, a 1366~px. Requisito por implementar: la aplicación web aún no existe. & Pantallas principales (inicio de sesión, lista de eventos y confirmación de asistencia) que se ven completas y funcionan en cada combinación. & Cumple si las 3 pantallas se ven completas y funcionan en las 3 combinaciones, sin desplazamiento horizontal. & COMRS-001 / NRNF-005 (artículo de SREI, Tabla~17). Umbral definido por el equipo. \\
+RNF-04 & Seguridad (confidencialidad e integridad) & Con la sesión de un estudiante, intentar 5 veces leer y 5 veces modificar los datos personales (correo y cédula) de otro usuario en servicio-usuarios. Repetir sin iniciar sesión. Requisito por implementar: servicio-usuarios y el inicio de sesión aún no existen. & Código HTTP de cada intento y si se devolvió o se cambió algún dato. & Cumple si se rechaza el 100~\% de los intentos (401 o 403) y ningún dato se lee ni se cambia. & SECRS-002 (artículo de SREI, Tabla~16). Umbral definido por el equipo. \\
+RNF-05 & Capacidad de interacción & Pedir a 12 estudiantes de la UTEQ, sin capacitación previa, que inicien sesión, busquen un evento y confirmen su asistencia en la aplicación web. Al terminar, cada uno responde el cuestionario SUS de 10 preguntas (escala de 1 a 5). Requisito por implementar: la aplicación web aún no existe. & Puntaje SUS promedio de los 12 estudiantes, de 0 a 100. & Promedio mínimo de~70, el inicio del rango ``Aceptable'' del artículo de SREI. & USARS-001 / NRNF-001 (artículo de SREI). Referencia: 79.79 del SREI original (promedio de la Tabla~29). \\
+RNF-06 & Manteni\-bilidad (modularidad) & Con solo servicio-eventos encendido, enviar una petición GET a /api\slash eventos\slash prueba (puerto~8080). Luego, con servicio-eventos apagado, encender solo servicio-consulta y comprobar que arranca en el puerto~8081. Prueba sobre el esqueleto de la Entrega~1. & Código HTTP de la respuesta, y si cada servicio arranca solo (sí o no). & Cumple si servicio-eventos responde 200~OK y servicio-consulta arranca, cada uno con el otro apagado. & Definido por el equipo (\mbox{ADR-001}, consecuencias positivas). \\
+\end{longtable}
+}
+
+En RNF-05, el 79.79 es el promedio SUS que obtuvieron las interfaces del SREI original con 12 estudiantes de la UTEQ. Lo usamos solo como referencia, no como resultado del PFC.
