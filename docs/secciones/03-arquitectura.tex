@@ -100,3 +100,24 @@ R-04 & Si servicio-eventos se cae o se cuelga, servicio-consulta responde un err
 R-05 & El servicio de IA generativa tarda mucho o no responde al crear la imagen de un evento, y servicio-eventos se queda esperando (\mbox{INT-03}, previsto). & Media & Media & La llamada sale solo de servicio-eventos (\mbox{ADR-001}), así que la demora no llega a servicio-usuarios. Previsto: le pondremos un tiempo de espera para no acumular hilos. Si se vence, el docente podrá subir su propia imagen, como ya permite la pantalla ``Proponer evento'' del SREI original (artículo de SREI, pág.~30). \\
 \end{longtable}
 }
+
+\subsection{Resultados de las mediciones del prototipo}
+\label{sec:resultados}
+Medimos tres requisitos sobre el prototipo actual, en local, en el equipo WASHING-PC. Las pruebas se hicieron el 22/11/2026, entre las 17:41 y las 18:02, con PowerShell 5.1, Java 21.0.13 y Spring Boot 4.1.3. El prototipo solo implementa \mbox{INT-01}, con una respuesta mínima y sin base de datos, así que estos tiempos no representan al sistema completo. Por eso \mbox{RNF-01} se volverá a medir en la Entrega~2, con la confirmación de asistencia. Las capturas están en \texttt{evidencias/ejecucion/}. Las de \texttt{washington-01} a \texttt{washington-03} muestran que los dos servicios arrancan y que \mbox{INT-01} responde. La Tabla~\ref{tab:resultados} resume las mediciones.
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Resultados de las mediciones del prototipo (22/11/2026, WASHING-PC). Fuente: elaboración propia.}
+\label{tab:resultados}
+\begin{tabular}{p{0.09\textwidth} p{0.43\textwidth} p{0.18\textwidth} p{0.20\textwidth}}
+\toprule
+RNF & Lo medido & Estado & Evidencia \\
+\midrule
+\mbox{RNF-01} & 30 peticiones GET a /api\slash consultas\slash evento, después de una de calentamiento. Promedio 0.0046~s y máximo 0.0148~s (umbral: máximo 1.0~s, deseable 0.1~s). & Cumple & \texttt{washington-04} \\
+\mbox{RNF-06} & Con solo servicio-eventos encendido, GET a /api\slash eventos\slash prueba respondió 200. Con servicio-eventos apagado, servicio-consulta arrancó sola en el puerto~8081. & Cumple & \texttt{washington-05}, \texttt{washington-06} y \texttt{washington-07} \\
+\mbox{RNF-02} & Con servicio-eventos apagado, las 5 peticiones a /api\slash consultas\slash evento recibieron un error 500, entre 0.005 y 0.16~s. servicio-consulta siguió respondiendo. & No se cumple todavía. Falta el 503 con mensaje claro (\mbox{R-04}). & \texttt{washington-07} \\
+\bottomrule
+\end{tabular}
+\end{table}
