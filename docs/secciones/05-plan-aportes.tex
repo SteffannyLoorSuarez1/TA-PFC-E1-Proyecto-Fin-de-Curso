@@ -1,0 +1,198 @@
+
+\section{Plan del proyecto y aportes}
+
+\subsection{Organización del equipo}
+
+El desarrollo del Sistema de Registro de Eventos Interculturales (SREI) se organiza mediante el marco de trabajo Scrum. El equipo distribuye sus responsabilidades de acuerdo con las actividades necesarias para el levantamiento de requisitos, el diseño de la solución, el desarrollo y la documentación del sistema.
+
+La organización busca que cada integrante tenga actividades definidas y que los avances puedan revisarse mediante las evidencias registradas en el repositorio del proyecto.
+
+\subsection{Roles y responsabilidades}
+
+\begin{longtable}{p{0.28\textwidth} p{0.22\textwidth} p{0.40\textwidth}}
+\caption{Participantes y responsabilidades del proyecto}\\
+\toprule
+\textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
+\midrule
+\endhead
+
+Dr. Gleiston Cicerón Guerrero Ulloa &
+Scrum Master &
+Facilitador externo y tutor académico del proceso Scrum.\\
+
+Washington Germán Apunte Pazmiño &
+Integrante del equipo &
+Arquitectura y documentación de calidad del sistema.\\
+
+Jordan Josue Loor Suárez &
+Integrante del equipo &
+Levantamiento de requisitos, documentación y seguimiento de los aportes.\\
+
+Steffanny del Rocío Loor Suárez &
+Integrante del equipo &
+Desarrollo del esqueleto del sistema y comunicación entre servicios.\\
+
+\bottomrule
+\end{longtable}
+
+Los Product Owners que proporcionan requisitos y orientaciones para el sistema son:
+
+\begin{itemize}
+    \item Ing. Jéssica Alexandra Ponce Ordoñez, coordinadora de la carrera de Software.
+    \item Ing. Washington Alberto Chiriboga Casanova, decano de la Facultad de Ciencias de la Computación y Diseño Digital.
+    \item Msc. Elizabeth Johanna Contreras Jara, docente de Educación Inicial de la Facultad de Ciencias de la Educación.
+\end{itemize}
+
+\subsubsection{Asignación de roles técnicos}
+
+Debido a que el equipo está conformado por tres integrantes y se requieren cuatro responsabilidades técnicas, uno de los integrantes asume dos roles. La siguiente distribución se plantea para organizar el trabajo del proyecto:
+
+\begin{longtable}{p{0.32\textwidth} p{0.28\textwidth} p{0.30\textwidth}}
+\caption{Asignación propuesta de roles técnicos}\\
+\toprule
+\textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
+\midrule
+\endhead
+
+Washington Germán Apunte Pazmiño &
+Arquitecto &
+Diseño de la arquitectura y documentación de sus componentes.\\
+
+Washington Germán Apunte Pazmiño &
+Responsable de Calidad &
+Seguimiento de los criterios de calidad y verificación de los requisitos.\\
+
+Jordan Josue Loor Suárez &
+Líder de Desarrollo &
+Coordinación del desarrollo y seguimiento de la implementación.\\
+
+Steffanny del Rocío Loor Suárez &
+Responsable de Documentación &
+Organización y consolidación de la documentación técnica.\\
+
+\bottomrule
+\end{longtable}
+
+Esta distribución es una propuesta de organización y deberá ser revisada y aceptada por los integrantes del equipo.
+
+\subsection{Organización del trabajo}
+
+Para facilitar el desarrollo, las actividades se distribuyen en bloques de trabajo relacionados con los entregables del proyecto:
+
+\begin{enumerate}
+    \item \textbf{Levantamiento y análisis:} identificación de interesados, recopilación de necesidades, análisis de requisitos y elaboración de historias de usuario.
+
+    \item \textbf{Arquitectura y diseño:} elaboración de diagramas de contexto y contenedores, identificación de componentes y documentación de decisiones arquitectónicas.
+
+    \item \textbf{Desarrollo:} preparación de la estructura del proyecto, implementación inicial de los servicios y comprobación de la comunicación entre componentes.
+
+    \item \textbf{Calidad y documentación:} revisión de requisitos, criterios de aceptación, evidencias de ejecución y consolidación del informe.
+\end{enumerate}
+
+\subsection{Cronograma de entregas}
+
+El proyecto se organiza en cuatro entregas principales, distribuidas de acuerdo con las semanas establecidas en el encuadre de la asignatura.
+
+\begin{longtable}{p{0.14\textwidth} p{0.15\textwidth} p{0.58\textwidth}}
+\caption{Planificación general de las entregas}\\
+\toprule
+\textbf{Entrega} & \textbf{Semana} & \textbf{Actividades principales}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Entrega} & \textbf{Semana} & \textbf{Actividades principales}\\
+\midrule
+\endhead
+
+E1 & 5 &
+Definición del proyecto, levantamiento y especificación de requisitos y arquitectura inicial.\\
+
+E2 & 9 &
+Desarrollo de microservicios, definición de API e implementación de contenedores.\\
+
+E3 & 13 &
+Integración de la base de datos distribuida y procesamiento de información.\\
+
+E4 & 17 &
+Integración final del sistema, evaluación de calidad, pruebas y defensa del proyecto.\\
+
+\bottomrule
+\end{longtable}
+
+Las actividades específicas y sus fechas de ejecución se gestionan de acuerdo con la planificación y los acuerdos establecidos por el equipo.
+
+\subsection{Control de versiones y colaboración}
+
+El repositorio de GitHub se utiliza para mantener el historial de cambios y facilitar la colaboración entre los integrantes. Cada estudiante trabaja en una rama propia y registra sus avances mediante commits que describen el trabajo realizado.
+
+Los cambios se incorporan a la rama principal mediante solicitudes de integración (Pull Requests), en las que se revisa que los archivos correspondan al bloque de trabajo desarrollado.
+
+Para evitar incorporar archivos temporales o cambios incompletos, se agregan explícitamente los archivos que forman parte de cada avance. Antes de realizar un commit se revisan los cambios preparados y se comprueba que no existan errores de formato.
+
+El seguimiento de las actividades se complementa mediante los issues y el tablero de GitHub Projects, donde se pueden organizar las tareas, identificar a sus responsables y consultar su estado de avance.
+
+\subsection{Seguimiento y evidencias}
+
+El seguimiento de las actividades se realiza mediante los issues, commits y Pull Requests del repositorio. Estos elementos permiten identificar qué actividad se desarrolló, quién la realizó y qué archivos fueron modificados.
+
+Las evidencias de diseño, levantamiento y ejecución se organizan en las carpetas correspondientes del repositorio:
+
+\begin{itemize}
+    \item \texttt{evidencias/levantamiento/}: documentos y registros relacionados con la recopilación de información.
+    \item \texttt{evidencias/diseno/}: evidencias de diagramas y decisiones de diseño.
+    \item \texttt{evidencias/ejecucion/}: capturas y resultados de las comprobaciones realizadas.
+\end{itemize}
+
+Los issues y el tablero de seguimiento permiten relacionar las actividades planificadas con los avances realizados. Los enlaces específicos se incorporarán en el registro de evidencias del proyecto.
+
+\subsection{Registro de aportes individuales}
+
+La siguiente tabla presenta los aportes identificados en el historial disponible del repositorio. Los identificadores de commit permiten localizar los cambios y revisar los archivos incorporados.
+
+\begin{longtable}{p{0.20\textwidth} p{0.47\textwidth} p{0.23\textwidth}}
+\caption{Registro de aportes individuales}\\
+\toprule
+\textbf{Integrante} & \textbf{Aporte registrado} & \textbf{Evidencia}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Integrante} & \textbf{Aporte registrado} & \textbf{Evidencia}\\
+\midrule
+\endhead
+
+Jordan Loor Suárez &
+Documentación del contexto y antecedentes del proyecto SREI. &
+Commit 089990a.\\
+
+Jordan Loor Suárez &
+Elaboración de historias de usuario, criterios de aceptación y requisitos del sistema. &
+Commit 329f5cc.\\
+
+Washington Apunte Pazmiño &
+Arquitectura y documentación de calidad. &
+Pendiente de verificación.\\
+
+Steffanny Loor Suárez &
+Preparación del esqueleto del sistema y documentación de comunicación entre servicios. &
+Pendiente de verificación.\\
+
+\bottomrule
+\end{longtable}
+
+El registro se actualizará conforme se incorporen nuevos avances y se disponga de sus respectivas evidencias. Los enlaces a los commits y a los issues correspondientes permitirán verificar la participación individual.
+
+\subsection{Uso de herramientas de inteligencia artificial}
+
+Se utilizaron herramientas de inteligencia artificial como apoyo durante la elaboración y organización de la documentación del proyecto. Estas herramientas facilitaron la revisión de la redacción, la organización de información y la comprensión de algunos aspectos técnicos.
+
+El contenido generado o sugerido mediante estas herramientas debe ser revisado por los integrantes antes de incorporarse a los entregables. La información, los requisitos, las decisiones técnicas y las evidencias presentadas deben corresponder al trabajo realizado y a las fuentes consultadas.
+
+La utilización de estas herramientas no sustituye la revisión del equipo ni la responsabilidad de sus integrantes sobre el contenido final del proyecto.
