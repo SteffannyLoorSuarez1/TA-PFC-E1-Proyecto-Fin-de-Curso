@@ -11,11 +11,11 @@ SREI lo usan cinco tipos de personas. Cuatro pertenecen a la UTEQ: el docente qu
 \end{figure}
 
 \subsection{Contenedores}
-La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 17, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace INT-01, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
+La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 17, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace \mbox{INT-01}, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
 
-\begin{figure}[H]
+\begin{figure}[p]
   \centering
-  \includegraphics[width=\textwidth]{diagramas/c4-contenedores.pdf}
+  \includegraphics[width=0.9\textheight, height=0.85\textwidth, keepaspectratio, angle=90]{diagramas/c4-contenedores.pdf}
   \caption{Diagrama de contenedores (C4, nivel 2). Fuente: elaboración propia.}
   \label{fig:c4-contenedores}
 \end{figure}
@@ -23,7 +23,7 @@ La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuar
 \subsection{Por qué un sistema distribuido y no un monolito}
 Hoy SREI es un monolito: un solo backend y una sola base de datos hacen todo el trabajo. El problema es que una parte lenta frena a las demás. Pasa, por ejemplo, con la generación de imágenes, que depende de un servicio de IA que no controlamos. Mientras la IA no responde, cada petición sigue ocupando un hilo del mismo servidor que atiende el inicio de sesión y las inscripciones. Cuando esas esperas se acumulan, el servidor ya no tiene hilos para atender a nadie más y todo SREI se vuelve lento. Además, el PFC exige un sistema distribuido, y un monolito no lo es.
 
-Pasar de un solo backend a tres servicios es una migración. Velepucha y Flores reúnen los patrones que se usan en microservicios y los retos de esa migración~\cite{velepucha2023}. Con tres servicios, cada uno corre por separado y es dueño de su base de datos. La llamada a la IA saldrá solo de servicio-eventos (INT-03, previsto), así que si la IA se pone lenta, el problema se queda en ese servicio. El inicio de sesión, que maneja servicio-usuarios, sigue funcionando, y servicio-consulta solo se ve afectado cuando necesita datos de eventos. Separar los datos también ayuda. Como ningún servicio lee la base de otro, un cambio en las tablas de eventos no obliga a tocar las de inscripciones o usuarios.
+Pasar de un solo backend a tres servicios es una migración. Velepucha y Flores reúnen los patrones que se usan en microservicios y los retos de esa migración~\cite{velepucha2023}. Con tres servicios, cada uno corre por separado y es dueño de su base de datos. La llamada a la IA saldrá solo de servicio-eventos (\mbox{INT-03}, previsto), así que si la IA se pone lenta, el problema se queda en ese servicio. El inicio de sesión, que maneja servicio-usuarios, sigue funcionando, y servicio-consulta solo se ve afectado cuando necesita datos de eventos. Separar los datos también ayuda. Como ningún servicio lee la base de otro, un cambio en las tablas de eventos no obliga a tocar las de inscripciones o usuarios.
 
 Esta decisión tiene costos que aceptamos. Hay más piezas que levantar y configurar, cada una con su puerto y su base. Ya no se pueden unir datos de distintos servicios con un JOIN, así que hay que pedirlos por la API. Además, Blinowski et al. compararon una misma aplicación web hecha como monolito y como microservicios, y en una sola máquina el monolito rindió más~\cite{blinowski2022}. Por eso no elegimos microservicios para que SREI sea más rápido, sino por el requisito del PFC y para aislar fallas, como la lentitud de la IA. Por último, como los servicios se llaman de forma síncrona, si servicio-eventos se cae, servicio-consulta no puede completar la consulta y el usuario ve un error.
 
@@ -53,7 +53,7 @@ RNF-06 & Manteni\-bilidad (modularidad) & Con solo servicio-eventos encendido, e
 \end{longtable}
 }
 
-En RNF-05, el 79.79 es el promedio SUS que obtuvieron las interfaces del SREI original con 12 estudiantes de la UTEQ. Lo usamos solo como referencia, no como resultado del PFC.
+En \mbox{RNF-05}, el 79.79 es el promedio SUS que obtuvieron las interfaces del SREI original con 12 estudiantes de la UTEQ. Lo usamos solo como referencia, no como resultado del PFC.
 
 \subsection{Consistencia y disponibilidad (CAP y PACELC)}
 El teorema CAP~\cite{gilbert2002} dice que, si se corta la comunicación entre partes de un sistema distribuido (partición, P), hay que elegir entre consistencia (C) y disponibilidad (A). PACELC~\cite{abadi2012} agrega que, si no hay partición (E, del inglés \emph{else}), hay que elegir entre baja latencia (L) y consistencia (C). En SREI cada servicio tendrá una sola base PostgreSQL, sin réplicas, así que la partición que nos importa es la que ocurre entre servicios, no entre copias de una base. Laigner et al. encontraron que, al manejar los datos en microservicios, aparecen retos que no se resuelven solo con ingeniería de software~\cite{laigner2021}. En la Tabla~\ref{tab:cap} analizamos los tres datos críticos, uno por cada base de datos del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}).
@@ -74,3 +74,29 @@ Usuarios y credenciales & BD de usuarios, propia de servicio-usuarios (prevista)
 \bottomrule
 \end{tabular}
 \end{table}
+
+\subsection{Riesgos}
+\label{sec:riesgos}
+La Tabla~\ref{tab:riesgos} resume cinco riesgos de arquitectura. \mbox{R-01} a \mbox{R-03} salen de las lecciones de FORM-AC-01: la configuración entre servicios, las migraciones de base de datos y los despliegues sin vuelta atrás automática. \mbox{R-04} y \mbox{R-05} salen de nuestro propio diseño: la llamada síncrona de \mbox{INT-01} y la dependencia de la IA generativa. Cada riesgo se liga a un enlace, a un RNF o al \mbox{ADR-001}, y su mitigación es algo que ya hicimos o que vamos a hacer.
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{p{0.06\textwidth} p{0.30\textwidth} p{0.10\textwidth} p{0.10\textwidth} p{0.34\textwidth}}
+\caption{Riesgos de arquitectura de SREI. Fuente: elaboración propia.}\label{tab:riesgos}\\
+\toprule
+ID & Riesgo & Prob. & Impacto & Mitigación \\
+\midrule
+\endfirsthead
+\toprule
+ID & Riesgo & Prob. & Impacto & Mitigación \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+R-01 & La dirección con la que servicio-consulta encuentra a servicio-eventos queda mal, por ejemplo con otro puerto o con localhost dentro de Docker. Entonces falla \mbox{INT-01} aunque los dos servicios estén encendidos. & Media & Alta & La dirección ya está en la propiedad servicio.eventos.url y no escrita en el código. Previsto: en Docker Compose la pasaremos como variable de entorno, con el nombre del contenedor en vez de localhost, y la documentaremos en el README. Después de cada cambio, probamos \mbox{INT-01}. \\
+R-02 & Al cambiar las tablas de una base (previstas, \mbox{INT-07} a \mbox{INT-09}), el cambio se aplica a mano o en otro orden, y el servicio no arranca o pierde datos. & Media & Alta & Previsto: cada servicio guardará sus cambios de base como scripts numerados en su repositorio, que se aplican solos al arrancar (Flyway). Nadie cambia una tabla a mano. Antes de un cambio que borre datos, sacamos un respaldo. \\
+R-03 & Al actualizar un servicio con Docker Compose, la nueva versión falla y no hay vuelta atrás automática, así que ese servicio queda caído. & Media & Media & Previsto: cada imagen llevará una etiqueta de versión, no solo latest. Actualizamos un servicio a la vez y comprobamos que responde, como en \mbox{RNF-06}. Si falla, volvemos a mano a la etiqueta anterior. Los demás servicios siguen funcionando (\mbox{ADR-001}). \\
+R-04 & Si servicio-eventos se cae o se cuelga, servicio-consulta responde un error 500 genérico. Como la llamada no tiene tiempo de espera, también puede quedarse esperando (\mbox{INT-01}). & Media & Alta & Previsto: poner un tiempo de espera a la llamada de \mbox{INT-01} y devolver un 503 con mensaje claro, como piden \mbox{RNF-02} y el seguimiento del \mbox{ADR-001}. Lo comprobaremos con la prueba de \mbox{RNF-02}. \\
+R-05 & El servicio de IA generativa tarda mucho o no responde al crear la imagen de un evento, y servicio-eventos se queda esperando (\mbox{INT-03}, previsto). & Media & Media & La llamada sale solo de servicio-eventos (\mbox{ADR-001}), así que la demora no llega a servicio-usuarios. Previsto: le pondremos un tiempo de espera para no acumular hilos. Si se vence, el docente podrá subir su propia imagen, como ya permite la pantalla ``Proponer evento'' del SREI original (artículo de SREI, pág.~30). \\
+\end{longtable}
+}
