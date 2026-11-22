@@ -1,12 +1,7 @@
 \section{Arquitectura del sistema}
 
 \subsection{Contexto del sistema}
-SREI lo usan cinco tipos de personas. Cuatro pertenecen a la UTEQ: 
-el docente que propone los eventos, el coordinador de carrera que los 
-aprueba o rechaza, el decano que los supervisa y los estudiantes que consultan los eventos y confirman su asistencia.
-El quinto es el usuario externo, una persona de fuera de la universidad que se registra y confirma su asistencia. 
-SREI se relaciona con un solo sistema externo, un servicio de IA generativa que crea la imagen de un evento 
-a partir de la descripción que escribe el docente (Figura~\ref{fig:c4-contexto}).
+SREI lo usan cinco tipos de personas. Cuatro pertenecen a la UTEQ: el docente que propone los eventos, el coordinador de carrera que los aprueba o rechaza, el decano que los supervisa y los estudiantes que se inscriben para asistir. El quinto es el usuario externo, una persona de fuera de la universidad que se registra y confirma su asistencia. SREI se relaciona con un solo sistema externo, un servicio de IA generativa que crea la imagen de un evento a partir de la descripción que escribe el docente (Figura~\ref{fig:c4-contexto}).
 
 \begin{figure}[H]
   \centering
@@ -16,44 +11,21 @@ a partir de la descripción que escribe el docente (Figura~\ref{fig:c4-contexto}
 \end{figure}
 
 \subsection{Contenedores}
-La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. 
-Los usuarios entran por una aplicación web hecha en Angular 17, 
-que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, 
-servicio-consulta en el puerto 8081 y servicio-usuarios. 
-En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. 
-Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace INT-01, 
-por el que servicio-consulta le pide los datos de un evento a servicio-eventos. 
-La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos,
-por eso se dibujan con línea punteada. 
-El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
+La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 17, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace INT-01, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
 
-\begin{figure}[p]
+\begin{figure}[H]
   \centering
-  \includegraphics[width=0.9\textheight, height=0.85\textwidth, keepaspectratio, angle=90]{diagramas/c4-contenedores.pdf}
+  \includegraphics[width=\textwidth]{diagramas/c4-contenedores.pdf}
   \caption{Diagrama de contenedores (C4, nivel 2). Fuente: elaboración propia.}
   \label{fig:c4-contenedores}
 \end{figure}
 
 \subsection{Por qué un sistema distribuido y no un monolito}
-Hoy SREI es un monolito: un solo backend y una sola base de datos hacen todo el trabajo. 
-El problema es que una parte lenta frena a las demás. Puede pasar, por ejemplo, con la generación de imágenes, 
-que depende de un servicio de IA que no controlamos. Mientras la IA no responde, 
-cada petición sigue ocupando un hilo del mismo servidor que atiende el inicio de sesión y las inscripciones. 
-Cuando esas esperas se acumulan, el servidor ya no tiene hilos para atender a nadie más y todo SREI se vuelve lento. 
-Además, el PFC exige un sistema distribuido, y un monolito no lo es.
+Hoy SREI es un monolito: un solo backend y una sola base de datos hacen todo el trabajo. El problema es que una parte lenta frena a las demás. Pasa, por ejemplo, con la generación de imágenes, que depende de un servicio de IA que no controlamos. Mientras la IA no responde, cada petición sigue ocupando un hilo del mismo servidor que atiende el inicio de sesión y las inscripciones. Cuando esas esperas se acumulan, el servidor ya no tiene hilos para atender a nadie más y todo SREI se vuelve lento. Además, el PFC exige un sistema distribuido, y un monolito no lo es.
 
-Con tres servicios, cada uno corre por separado y es dueño de su base de datos. 
-La llamada a la IA saldrá solo de servicio-eventos (INT-03, previsto), así que si la IA se pone lenta, 
-el problema se queda en ese servicio. El inicio de sesión, que maneja servicio-usuarios, sigue funcionando, 
-y servicio-consulta solo se ve afectado cuando necesita datos de eventos. Separar los datos también ayuda. 
-Como ningún servicio lee la base de otro, un cambio en las tablas de eventos no obliga a tocar las de inscripciones o usuarios.
+Pasar de un solo backend a tres servicios es una migración. Velepucha y Flores reúnen los patrones que se usan en microservicios y los retos de esa migración~\cite{velepucha2023}. Con tres servicios, cada uno corre por separado y es dueño de su base de datos. La llamada a la IA saldrá solo de servicio-eventos (INT-03, previsto), así que si la IA se pone lenta, el problema se queda en ese servicio. El inicio de sesión, que maneja servicio-usuarios, sigue funcionando, y servicio-consulta solo se ve afectado cuando necesita datos de eventos. Separar los datos también ayuda. Como ningún servicio lee la base de otro, un cambio en las tablas de eventos no obliga a tocar las de inscripciones o usuarios.
 
-Esta decisión tiene costos que aceptamos. Hay más piezas que levantar y configurar, 
-cada una con su puerto y su base. Ya no se pueden unir datos de distintos servicios con un JOIN, 
-así que hay que pedirlos por la API. Y como los servicios se llaman de forma síncrona, si servicio-eventos se cae, 
-servicio-consulta no puede completar la consulta y el usuario ve un error.
-
-Las opciones consideradas y la decisión completa están en el ADR-001.
+Esta decisión tiene costos que aceptamos. Hay más piezas que levantar y configurar, cada una con su puerto y su base. Ya no se pueden unir datos de distintos servicios con un JOIN, así que hay que pedirlos por la API. Además, Blinowski et al. compararon una misma aplicación web hecha como monolito y como microservicios, y en una sola máquina el monolito rindió más~\cite{blinowski2022}. Por eso no elegimos microservicios para que SREI sea más rápido, sino por el requisito del PFC y para aislar fallas, como la lentitud de la IA. Por último, como los servicios se llaman de forma síncrona, si servicio-eventos se cae, servicio-consulta no puede completar la consulta y el usuario ve un error.
 
 \subsection{Requisitos no funcionales}
 La Tabla~\ref{tab:rnf} resume qué se mide en SREI, cómo se prueba y qué umbral debe cumplir cada requisito. Los umbrales salen del artículo de SREI cuando este da un número, y los demás los define el equipo, como se indica en cada fila. El artículo clasifica algunos requisitos con categorías distintas a las de ISO/IEC 25010:2023, por eso aquí se reclasificaron: NRNF-002 pasa de rendimiento a fiabilidad, y NRNF-005, de compatibilidad a flexibilidad. Además, el artículo habla de usabilidad (NRNF-001), que en la edición 2023 de la norma se llama capacidad de interacción.
@@ -82,3 +54,23 @@ RNF-06 & Manteni\-bilidad (modularidad) & Con solo servicio-eventos encendido, e
 }
 
 En RNF-05, el 79.79 es el promedio SUS que obtuvieron las interfaces del SREI original con 12 estudiantes de la UTEQ. Lo usamos solo como referencia, no como resultado del PFC.
+
+\subsection{Consistencia y disponibilidad (CAP y PACELC)}
+El teorema CAP~\cite{gilbert2002} dice que, si se corta la comunicación entre partes de un sistema distribuido (partición, P), hay que elegir entre consistencia (C) y disponibilidad (A). PACELC~\cite{abadi2012} agrega que, si no hay partición (E, del inglés \emph{else}), hay que elegir entre baja latencia (L) y consistencia (C). En SREI cada servicio tendrá una sola base PostgreSQL, sin réplicas, así que la partición que nos importa es la que ocurre entre servicios, no entre copias de una base. Laigner et al. encontraron que, al manejar los datos en microservicios, aparecen retos que no se resuelven solo con ingeniería de software~\cite{laigner2021}. En la Tabla~\ref{tab:cap} analizamos los tres datos críticos, uno por cada base de datos del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}).
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Análisis CAP y PACELC de los datos críticos de SREI. Fuente: elaboración propia.}
+\label{tab:cap}
+\begin{tabular}{p{2.6cm} p{2.3cm} p{2.4cm} p{2.4cm} p{4.4cm}}
+\toprule
+Dato crítico & Dónde vive & Con partición (CAP) & Sin partición (PACELC) & Justificación \\
+\midrule
+Estado de los eventos (propuesto, aprobado, publicado) & BD de eventos, propia de servicio-eventos (prevista) & PC: mejor un error que un evento desactualizado. & EC: cada consulta lee el estado actual. & Un evento desactualizado puede llevar a un estudiante a confirmar asistencia con datos que ya cambiaron. Hoy servicio-consulta no guarda copia y, si no alcanza a servicio-eventos, devuelve un error (\mbox{ADR-001}, \mbox{RNF-02}). El costo es la latencia de \mbox{INT-01} (\mbox{RNF-01}). \\
+Inscripciones y confirmación de asistencia & BD de inscripciones, propia de servicio-consulta (prevista) & PC: mejor no inscribir que inscribir sin comprobar. & EC: la segunda inscripción espera a la primera. & Si un evento tiene cupo y queda uno solo, de dos inscripciones a la vez solo una debe confirmarse. Previsto: revisar el cupo y guardar la inscripción en una sola transacción. Sin servicio-eventos no se inscribe, porque no se puede comprobar que el evento sigue publicado. \\
+Usuarios y credenciales & BD de usuarios, propia de servicio-usuarios (prevista) & PC: mejor rechazar que aceptar datos viejos. & EC: cada validación lee el usuario actual. & Un usuario deshabilitado o con otro rol no debe seguir actuando con datos viejos. Previsto: servicio-consulta valida al usuario en cada petición con servicio-usuarios (\mbox{INT-02}) y, si no lo alcanza, la rechaza. El costo es una llamada más por petición. \\
+\bottomrule
+\end{tabular}
+\end{table}
