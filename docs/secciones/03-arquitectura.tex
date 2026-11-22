@@ -1,0 +1,102 @@
+\section{Arquitectura del sistema}
+
+\subsection{Contexto del sistema}
+SREI lo usan cinco tipos de personas. Cuatro pertenecen a la UTEQ: el docente que propone los eventos, el coordinador de carrera que los aprueba o rechaza, el decano que los supervisa y los estudiantes que se inscriben para asistir. El quinto es el usuario externo, una persona de fuera de la universidad que se registra y confirma su asistencia. SREI se relaciona con un solo sistema externo, un servicio de IA generativa que crea la imagen de un evento a partir de la descripción que escribe el docente (Figura~\ref{fig:c4-contexto}).
+
+\begin{figure}[H]
+  \centering
+  \includegraphics[width=\textwidth]{diagramas/c4-contexto.pdf}
+  \caption{Diagrama de contexto (C4, nivel 1). Fuente: elaboración propia.}
+  \label{fig:c4-contexto}
+\end{figure}
+
+\subsection{Contenedores}
+La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 17, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace \mbox{INT-01}, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
+
+\begin{figure}[p]
+  \centering
+  \includegraphics[width=0.9\textheight, height=0.85\textwidth, keepaspectratio, angle=90]{diagramas/c4-contenedores.pdf}
+  \caption{Diagrama de contenedores (C4, nivel 2). Fuente: elaboración propia.}
+  \label{fig:c4-contenedores}
+\end{figure}
+
+\subsection{Por qué un sistema distribuido y no un monolito}
+Hoy SREI es un monolito: un solo backend y una sola base de datos hacen todo el trabajo. El problema es que una parte lenta frena a las demás. Pasa, por ejemplo, con la generación de imágenes, que depende de un servicio de IA que no controlamos. Mientras la IA no responde, cada petición sigue ocupando un hilo del mismo servidor que atiende el inicio de sesión y las inscripciones. Cuando esas esperas se acumulan, el servidor ya no tiene hilos para atender a nadie más y todo SREI se vuelve lento. Además, el PFC exige un sistema distribuido, y un monolito no lo es.
+
+Pasar de un solo backend a tres servicios es una migración. Velepucha y Flores reúnen los patrones que se usan en microservicios y los retos de esa migración~\cite{velepucha2023}. Con tres servicios, cada uno corre por separado y es dueño de su base de datos. La llamada a la IA saldrá solo de servicio-eventos (\mbox{INT-03}, previsto), así que si la IA se pone lenta, el problema se queda en ese servicio. El inicio de sesión, que maneja servicio-usuarios, sigue funcionando, y servicio-consulta solo se ve afectado cuando necesita datos de eventos. Separar los datos también ayuda. Como ningún servicio lee la base de otro, un cambio en las tablas de eventos no obliga a tocar las de inscripciones o usuarios.
+
+Esta decisión tiene costos que aceptamos. Hay más piezas que levantar y configurar, cada una con su puerto y su base. Ya no se pueden unir datos de distintos servicios con un JOIN, así que hay que pedirlos por la API. Además, Blinowski et al. compararon una misma aplicación web hecha como monolito y como microservicios, y en una sola máquina el monolito rindió más~\cite{blinowski2022}. Por eso no elegimos microservicios para que SREI sea más rápido, sino por el requisito del PFC y para aislar fallas, como la lentitud de la IA. Por último, como los servicios se llaman de forma síncrona, si servicio-eventos se cae, servicio-consulta no puede completar la consulta y el usuario ve un error.
+
+\subsection{Requisitos no funcionales}
+La Tabla~\ref{tab:rnf} resume qué se mide en SREI, cómo se prueba y qué umbral debe cumplir cada requisito. Los umbrales salen del artículo de SREI cuando este da un número, y los demás los define el equipo, como se indica en cada fila. El artículo clasifica algunos requisitos con categorías distintas a las de ISO/IEC 25010:2023, por eso aquí se reclasificaron: NRNF-002 pasa de rendimiento a fiabilidad, y NRNF-005, de compatibilidad a flexibilidad. Además, el artículo habla de usabilidad (NRNF-001), que en la edición 2023 de la norma se llama capacidad de interacción.
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{p{1.4cm} p{2.5cm} p{3.3cm} p{2.5cm} p{2.3cm} p{2.3cm}}
+\caption{Requisitos no funcionales de SREI (ISO/IEC 25010:2023). Fuente: elaboración propia.}\label{tab:rnf}\\
+\toprule
+ID & Característica & Condición de prueba & Métrica & Umbral & Fuente \\
+\midrule
+\endfirsthead
+\toprule
+ID & Característica & Condición de prueba & Métrica & Umbral & Fuente \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+RNF-01 & Eficiencia de desempeño (comportamiento temporal) & Con servicio-eventos y servicio-consulta corriendo en local, enviar desde PowerShell 30 peticiones GET a /api\slash consultas\slash evento, después de una petición de calentamiento. Medición sobre el prototipo \mbox{INT-01}. En la Entrega 2 se mide la confirmación de asistencia. & Tiempo de respuesta de cada petición, en segundos. Se reportan el promedio y el máximo. & Máximo 1.0~s por petición (deseable 0.1~s). & PERS-002 / NRNF-006 (artículo de SREI, Tabla~15). \\
+RNF-02 & Fiabilidad (tolerancia a fallos) & Con servicio-eventos detenido y servicio-consulta corriendo, enviar 5 peticiones GET a /api\slash consultas\slash evento (\mbox{INT-01}). Requisito por implementar: hoy el prototipo devuelve un error 500 sin mensaje propio (\mbox{ADR-001}, seguimiento). & Código HTTP y mensaje que recibe el usuario, y tiempo hasta recibirlos, en segundos. & Respuesta 503 con mensaje claro en máximo 2~s, sin que se caiga servicio-consulta. & PERS-001 / NRNF-002 (artículo de SREI, Tabla~15). Umbral definido por el equipo. \\
+RNF-03 & Flexibilidad (adaptabilidad) & Abrir la aplicación web en un celular Android con Chrome, a 360~px de ancho, y en una laptop con Chrome y con Firefox, a 1366~px. Requisito por implementar: la aplicación web aún no existe. & Pantallas principales (inicio de sesión, lista de eventos y confirmación de asistencia) que se ven completas y funcionan en cada combinación. & Cumple si las 3 pantallas se ven completas y funcionan en las 3 combinaciones, sin desplazamiento horizontal. & COMRS-001 / NRNF-005 (artículo de SREI, Tabla~17). Umbral definido por el equipo. \\
+RNF-04 & Seguridad (confidencialidad e integridad) & Con la sesión de un estudiante, intentar 5 veces leer y 5 veces modificar los datos personales (correo y cédula) de otro usuario en servicio-usuarios. Repetir sin iniciar sesión. Requisito por implementar: servicio-usuarios y el inicio de sesión aún no existen. & Código HTTP de cada intento y si se devolvió o se cambió algún dato. & Cumple si se rechaza el 100~\% de los intentos (401 o 403) y ningún dato se lee ni se cambia. & SECRS-002 (artículo de SREI, Tabla~16). Umbral definido por el equipo. \\
+RNF-05 & Capacidad de interacción & Pedir a 12 estudiantes de la UTEQ, sin capacitación previa, que inicien sesión, busquen un evento y confirmen su asistencia en la aplicación web. Al terminar, cada uno responde el cuestionario SUS de 10 preguntas (escala de 1 a 5). Requisito por implementar: la aplicación web aún no existe. & Puntaje SUS promedio de los 12 estudiantes, de 0 a 100. & Promedio mínimo de~70, el inicio del rango ``Aceptable'' del artículo de SREI. & USARS-001 / NRNF-001 (artículo de SREI). Referencia: 79.79 del SREI original (promedio de la Tabla~29). \\
+RNF-06 & Manteni\-bilidad (modularidad) & Con solo servicio-eventos encendido, enviar una petición GET a /api\slash eventos\slash prueba (puerto~8080). Luego, con servicio-eventos apagado, encender solo servicio-consulta y comprobar que arranca en el puerto~8081. Prueba sobre el esqueleto de la Entrega~1. & Código HTTP de la respuesta, y si cada servicio arranca solo (sí o no). & Cumple si servicio-eventos responde 200~OK y servicio-consulta arranca, cada uno con el otro apagado. & Definido por el equipo (\mbox{ADR-001}, consecuencias positivas). \\
+\end{longtable}
+}
+
+En \mbox{RNF-05}, el 79.79 es el promedio SUS que obtuvieron las interfaces del SREI original con 12 estudiantes de la UTEQ. Lo usamos solo como referencia, no como resultado del PFC.
+
+\subsection{Consistencia y disponibilidad (CAP y PACELC)}
+El teorema CAP~\cite{gilbert2002} dice que, si se corta la comunicación entre partes de un sistema distribuido (partición, P), hay que elegir entre consistencia (C) y disponibilidad (A). PACELC~\cite{abadi2012} agrega que, si no hay partición (E, del inglés \emph{else}), hay que elegir entre baja latencia (L) y consistencia (C). En SREI cada servicio tendrá una sola base PostgreSQL, sin réplicas, así que la partición que nos importa es la que ocurre entre servicios, no entre copias de una base. Laigner et al. encontraron que, al manejar los datos en microservicios, aparecen retos que no se resuelven solo con ingeniería de software~\cite{laigner2021}. En la Tabla~\ref{tab:cap} analizamos los tres datos críticos, uno por cada base de datos del diagrama de contenedores (Figura~\ref{fig:c4-contenedores}).
+
+\begin{table}[H]
+\centering
+\small
+\setlength{\tabcolsep}{4pt}
+\caption{Análisis CAP y PACELC de los datos críticos de SREI. Fuente: elaboración propia.}
+\label{tab:cap}
+\begin{tabular}{p{2.6cm} p{2.3cm} p{2.4cm} p{2.4cm} p{4.4cm}}
+\toprule
+Dato crítico & Dónde vive & Con partición (CAP) & Sin partición (PACELC) & Justificación \\
+\midrule
+Estado de los eventos (propuesto, aprobado, publicado) & BD de eventos, propia de servicio-eventos (prevista) & PC: mejor un error que un evento desactualizado. & EC: cada consulta lee el estado actual. & Un evento desactualizado puede llevar a un estudiante a confirmar asistencia con datos que ya cambiaron. Hoy servicio-consulta no guarda copia y, si no alcanza a servicio-eventos, devuelve un error (\mbox{ADR-001}, \mbox{RNF-02}). El costo es la latencia de \mbox{INT-01} (\mbox{RNF-01}). \\
+Inscripciones y confirmación de asistencia & BD de inscripciones, propia de servicio-consulta (prevista) & PC: mejor no inscribir que inscribir sin comprobar. & EC: la segunda inscripción espera a la primera. & Si un evento tiene cupo y queda uno solo, de dos inscripciones a la vez solo una debe confirmarse. Previsto: revisar el cupo y guardar la inscripción en una sola transacción. Sin servicio-eventos no se inscribe, porque no se puede comprobar que el evento sigue publicado. \\
+Usuarios y credenciales & BD de usuarios, propia de servicio-usuarios (prevista) & PC: mejor rechazar que aceptar datos viejos. & EC: cada validación lee el usuario actual. & Un usuario deshabilitado o con otro rol no debe seguir actuando con datos viejos. Previsto: servicio-consulta valida al usuario en cada petición con servicio-usuarios (\mbox{INT-02}) y, si no lo alcanza, la rechaza. El costo es una llamada más por petición. \\
+\bottomrule
+\end{tabular}
+\end{table}
+
+\subsection{Riesgos}
+\label{sec:riesgos}
+La Tabla~\ref{tab:riesgos} resume cinco riesgos de arquitectura. \mbox{R-01} a \mbox{R-03} salen de las lecciones de FORM-AC-01: la configuración entre servicios, las migraciones de base de datos y los despliegues sin vuelta atrás automática. \mbox{R-04} y \mbox{R-05} salen de nuestro propio diseño: la llamada síncrona de \mbox{INT-01} y la dependencia de la IA generativa. Cada riesgo se liga a un enlace, a un RNF o al \mbox{ADR-001}, y su mitigación es algo que ya hicimos o que vamos a hacer.
+
+{\small
+\setlength{\tabcolsep}{4pt}
+\begin{longtable}{p{0.06\textwidth} p{0.30\textwidth} p{0.10\textwidth} p{0.10\textwidth} p{0.34\textwidth}}
+\caption{Riesgos de arquitectura de SREI. Fuente: elaboración propia.}\label{tab:riesgos}\\
+\toprule
+ID & Riesgo & Prob. & Impacto & Mitigación \\
+\midrule
+\endfirsthead
+\toprule
+ID & Riesgo & Prob. & Impacto & Mitigación \\
+\midrule
+\endhead
+\bottomrule
+\endfoot
+R-01 & La dirección con la que servicio-consulta encuentra a servicio-eventos queda mal, por ejemplo con otro puerto o con localhost dentro de Docker. Entonces falla \mbox{INT-01} aunque los dos servicios estén encendidos. & Media & Alta & La dirección ya está en la propiedad servicio.eventos.url y no escrita en el código. Previsto: en Docker Compose la pasaremos como variable de entorno, con el nombre del contenedor en vez de localhost, y la documentaremos en el README. Después de cada cambio, probamos \mbox{INT-01}. \\
+R-02 & Al cambiar las tablas de una base (previstas, \mbox{INT-07} a \mbox{INT-09}), el cambio se aplica a mano o en otro orden, y el servicio no arranca o pierde datos. & Media & Alta & Previsto: cada servicio guardará sus cambios de base como scripts numerados en su repositorio, que se aplican solos al arrancar (Flyway). Nadie cambia una tabla a mano. Antes de un cambio que borre datos, sacamos un respaldo. \\
+R-03 & Al actualizar un servicio con Docker Compose, la nueva versión falla y no hay vuelta atrás automática, así que ese servicio queda caído. & Media & Media & Previsto: cada imagen llevará una etiqueta de versión, no solo latest. Actualizamos un servicio a la vez y comprobamos que responde, como en \mbox{RNF-06}. Si falla, volvemos a mano a la etiqueta anterior. Los demás servicios siguen funcionando (\mbox{ADR-001}). \\
+R-04 & Si servicio-eventos se cae o se cuelga, servicio-consulta responde un error 500 genérico. Como la llamada no tiene tiempo de espera, también puede quedarse esperando (\mbox{INT-01}). & Media & Alta & Previsto: poner un tiempo de espera a la llamada de \mbox{INT-01} y devolver un 503 con mensaje claro, como piden \mbox{RNF-02} y el seguimiento del \mbox{ADR-001}. Lo comprobaremos con la prueba de \mbox{RNF-02}. \\
+R-05 & El servicio de IA generativa tarda mucho o no responde al crear la imagen de un evento, y servicio-eventos se queda esperando (\mbox{INT-03}, previsto). & Media & Media & La llamada sale solo de servicio-eventos (\mbox{ADR-001}), así que la demora no llega a servicio-usuarios. Previsto: le pondremos un tiempo de espera para no acumular hilos. Si se vence, el docente podrá subir su propia imagen, como ya permite la pantalla ``Proponer evento'' del SREI original (artículo de SREI, pág.~30). \\
+\end{longtable}
+}
