@@ -1,288 +1,167 @@
-
 \section{Requisitos del sistema}
 
 \subsection{Introducción}
-
-En esta sección se presentan los requisitos del Sistema de Registro de Eventos Interculturales (SREI). Su definición parte de las necesidades identificadas durante el levantamiento de información y de la especificación de los módulos de Gestión de Usuarios y Roles y Propuesta del Evento.
-
-Para organizar los requisitos se consideran las categorías de negocio (BRS), interesados (StRS), sistema (SyRS), calidad (QR) y restricciones (C), siguiendo la estructura de la norma ISO/IEC/IEEE 29148:2018.
+Esta sección presenta los requisitos del Sistema de Registro de Eventos Interculturales (SREI). Se toman como referencia el documento de levantamiento y especificación de requisitos del proyecto y las especificaciones de los módulos de Gestión de Usuarios y Roles y Propuesta del Evento. Se diferencian los identificadores originales del documento fuente de los códigos internos utilizados para detallar los módulos, con el propósito de conservar la trazabilidad.
 
 \subsection{Fuentes y técnica de elicitación}
+La entrevista fue la técnica utilizada para conocer las necesidades de las personas relacionadas con la organización y participación en eventos interculturales. El documento fuente organiza los resultados como necesidades de negocio, de interesados, funcionales, no funcionales y restricciones, y presenta los requisitos resultantes de su especificación y validación.
 
-La entrevista semiestructurada fue la técnica utilizada para conocer las necesidades de las personas relacionadas con la organización y participación en eventos interculturales. Permitió orientar las preguntas según el perfil de cada interesado y profundizar en los aspectos que requerían mayor explicación.
-
-Como fuentes documentales se consideran el informe de entrevistas del proyecto y las especificaciones de requisitos de Gestión de Usuarios y Roles y Propuesta del Evento. También se dispone de grabaciones de audio correspondientes a entrevistas y validaciones. Estas grabaciones se conservan como evidencias; no se presentan como transcripciones.
-
-La información recopilada se organizó de acuerdo con las necesidades de los interesados y se relacionó con los requisitos correspondientes. Los identificadores de las especificaciones originales se mantienen para facilitar su seguimiento.
+Como evidencias complementarias se conservan grabaciones de entrevistas y validaciones. Los archivos de audio respaldan el proceso de recopilación de información, pero no se consideran transcripciones. También se consultan las especificaciones de Gestión de Usuarios y Roles y Propuesta del Evento para detallar las funcionalidades de esos módulos.
 
 \subsection{Perfiles de los interesados}
-
-Los perfiles que participan en la definición y validación de los requisitos se presentan a continuación.
-
-\begin{longtable}{p{0.29\textwidth} p{0.63\textwidth}}
+\begin{longtable}{p{0.36\textwidth} p{0.56\textwidth}}
 \caption{Perfiles de los interesados del SREI}\\
 \toprule
-\textbf{Interesado} & \textbf{Rol y responsabilidad}\\
+\textbf{Interesado} & \textbf{Rol y participación}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{Interesado} & \textbf{Rol y responsabilidad}\\
+\textbf{Interesado} & \textbf{Rol y participación}\\
 \midrule
 \endhead
-Ing. Jéssica Alexandra Ponce Ordoñez &
-Product Owner. Coordinadora de la carrera de Software de la FCCDD, UTEQ. Proporciona requisitos.\\
-Ing. Washington Alberto Chiriboga Casanova &
-Product Owner. Decano de la Facultad de Ciencias de la Computación y Diseño Digital, UTEQ. Proporciona requisitos.\\
-Msc. Elizabeth Johanna Contreras Jara &
-Product Owner. Docente de Educación Inicial de la Facultad de Ciencias de la Educación, UTEQ. Proporciona requisitos.\\
-Dr. Gleiston Cicerón Guerrero Ulloa &
-Scrum Master. Facilitador externo y tutor académico del proceso Scrum.\\
-Washington Germán Apunte Pazmiño &
-Integrante del equipo de desarrollo.\\
-Jordan Josue Loor Suárez &
-Integrante del equipo de desarrollo.\\
-Steffanny del Rocío Loor Suárez &
-Integrante del equipo de desarrollo.\\
-Estudiante participante &
-Usuario final que consulta los eventos, se registra y confirma su asistencia.\\
+Ing. Jéssica Alexandra Ponce Ordóñez & Coordinadora de la carrera de Software de la FCCDD, UTEQ. Aporta necesidades relacionadas con la gestión y coordinación de eventos.\\
+Ing. Washington Alberto Chiriboga Casanova & Decano de la Facultad de Ciencias de la Computación y Diseño Digital, UTEQ. Aporta necesidades relacionadas con informes, difusión y gestión institucional.\\
+Msc. Elizabeth Johanna Contreras Jara & Docente de Educación Inicial de la Facultad de Ciencias de la Educación, UTEQ. Aporta necesidades relacionadas con propuestas y seguimiento de eventos.\\
+Estudiantes y asistentes & Usuarios que consultan eventos, se registran y participan en las actividades.\\
+Dr. Gleiston Cicerón Guerrero Ulloa & Scrum Master y tutor académico del proceso.\\
+Washington Germán Apunte Pazmiño, Jordan Josue Loor Suárez y Steffanny del Rocío Loor Suárez & Integrantes del equipo responsable del análisis, diseño, desarrollo y documentación del SREI.\\
 \bottomrule
 \end{longtable}
 
 \subsection{Clasificación de los requisitos}
-
-Los requisitos se organizan en cinco grupos:
-
+El documento fuente utiliza las siguientes categorías:
 \begin{itemize}
-    \item \textbf{BRS:} requisitos de negocio que expresan los objetivos institucionales.
-    \item \textbf{StRS:} necesidades y expectativas de los interesados.
-    \item \textbf{SyRS:} requisitos funcionales que describen las operaciones que debe realizar el sistema.
-    \item \textbf{QR:} requisitos relacionados con la calidad, como usabilidad, rendimiento, seguridad y compatibilidad.
-    \item \textbf{C:} restricciones que delimitan las tecnologías, formatos y condiciones de funcionamiento.
+\item \textbf{BRS:} requisitos de negocio relacionados con los objetivos institucionales.
+\item \textbf{StRS:} requisitos de interesados que expresan sus necesidades y expectativas.
+\item \textbf{SyRS:} requisitos funcionales del sistema.
+\item \textbf{QR:} requisitos de calidad o no funcionales.
+\item \textbf{USARS, PERS, SECRS y COMRS:} categorías específicas de usabilidad, rendimiento, seguridad y compatibilidad.
+\item \textbf{C:} restricciones que condicionan el funcionamiento o las características del sistema.
 \end{itemize}
+Los identificadores de las tablas siguientes corresponden al documento fuente, salvo cuando se indica expresamente que son códigos internos de los módulos.
 
 \subsection{Requisitos de negocio}
-
-La especificación contempla dos requisitos de negocio principales:
-
+El documento fuente establece dos requisitos de negocio:
 \begin{itemize}
-    \item \textbf{BRS-01:} controlar de forma centralizada el acceso al módulo y las acciones permitidas según el rol de cada persona.
-    \item \textbf{BRS-02:} formalizar las propuestas de eventos interculturales, de manera que los eventos publicados cuenten con un informe PDF de respaldo y un trámite verificable.
+\item \textbf{BRS-001:} cuando el usuario pertenece a la docencia de la facultad correspondiente, el sistema debe habilitar el registro de un evento con tema, fecha, lugar, responsable y asistentes.
+\item \textbf{BRS-002:} cuando la coordinación aprueba la propuesta enviada por un docente, el sistema debe habilitar la planificación del evento, incluyendo título, fecha, aporte cultural, lugar y recursos.
 \end{itemize}
 
 \subsection{Requisitos de los interesados}
+\begin{longtable}{p{0.13\textwidth} p{0.59\textwidth} p{0.18\textwidth}}
+\caption{Requisitos de los interesados}\\
+\toprule
+\textbf{ID} & \textbf{Requisito resumido} & \textbf{Fuente}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{ID} & \textbf{Requisito resumido} & \textbf{Fuente}\\
+\midrule
+\endhead
+StRS-001 & La coordinación debe poder aprobar o rechazar una propuesta de evento enviada por un docente. & Coordinación.\\
+StRS-002 & El sistema debe mostrar estadísticas actualizadas después de finalizar un evento académico. & Coordinación.\\
+StRS-003 & El sistema debe generar informes de estadísticas y logros a partir de eventos interculturales realizados. & Decanato.\\
+StRS-004 & Los organizadores deben consultar el estado actualizado de revisión de las solicitudes enviadas. & Organización.\\
+StRS-005 & Estudiantes y usuarios externos registrados deben poder confirmar su asistencia a eventos programados. & Estudiantes.\\
+StRS-006 & El sistema debe facilitar información sobre eventos próximos. & Estudiantes.\\
+\bottomrule
+\end{longtable}
 
-Se identifican las siguientes necesidades:
-
+\subsection{Requisitos funcionales del sistema}
+El documento fuente contiene requisitos identificados como SyRS-001 a SyRS-012. Los siguientes se relacionan directamente con gestión y propuesta de eventos:
 \begin{itemize}
-    \item \textbf{StRS-01:} el Administrador necesita crear, consultar, actualizar y dar de baja a los usuarios.
-    \item \textbf{StRS-02:} el Administrador necesita definir los roles y sus respectivos permisos.
-    \item \textbf{StRS-03:} el Docente necesita registrar una propuesta de evento, adjuntar el informe PDF y enviarla a revisión.
-    \item \textbf{StRS-04:} el Docente necesita registrar los campos particulares de cada tipo de evento, sin tener que utilizar campos genéricos.
+\item \textbf{SyRS-001:} permitir a la coordinación editar la información de eventos registrados, incluyendo título, fecha, lugar, responsable y asistentes.
+\item \textbf{SyRS-002:} mostrar un historial en formato de calendario con eventos realizados y próximos.
+\item \textbf{SyRS-003:} habilitar la asignación de nuevos usuarios administrativos.
+\item \textbf{SyRS-008:} mostrar el formulario de inscripción a estudiantes o usuarios externos que deseen asistir a un evento.
+\item \textbf{SyRS-009:} mostrar el formulario para que un asistente confirme su asistencia.
+\item \textbf{SyRS-010:} permitir el registro de usuarios internos o externos.
+\item \textbf{SyRS-012:} permitir que un usuario con rol docente envíe una propuesta con información como fecha, tema, campus o lugar, público objetivo, asistentes y organizadores.
 \end{itemize}
+El documento también contempla difusión en redes sociales, retroalimentación, juegos, generación de imágenes mediante IA y transmisión de eventos. Su presencia en la especificación general no significa que todos esos componentes formen parte de los módulos detallados en esta entrega.
 
-\subsection{Historias de usuario}
+\subsection{Historias de usuario de los módulos especificados}
+Las historias siguientes se derivan de las especificaciones de Gestión de Usuarios y Roles y Propuesta del Evento. Los códigos RF son identificadores internos de esas especificaciones; no sustituyen ni renumeran los identificadores SyRS del documento fuente.
 
-A partir de los requisitos funcionales especificados para los módulos de Gestión de Usuarios y Roles y Propuesta del Evento, se presentan diez historias de usuario. Cada una incluye criterios de aceptación, prioridad y trazabilidad hacia los requisitos originales.
-
-\begin{longtable}{p{0.07\textwidth} p{0.33\textwidth} p{0.36\textwidth} p{0.09\textwidth} p{0.11\textwidth}}
+\begin{longtable}{p{0.07\textwidth} p{0.31\textwidth} p{0.37\textwidth} p{0.08\textwidth} p{0.12\textwidth}}
 \caption{Historias de usuario y criterios de aceptación}\\
 \toprule
-\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prioridad} & \textbf{Trazabilidad}\\
+\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prioridad} & \textbf{RF interno}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prioridad} & \textbf{Trazabilidad}\\
+\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prioridad} & \textbf{RF interno}\\
 \midrule
 \endhead
-
-HU-01 &
-Como Administrador, quiero registrar usuarios con sus datos personales y correo institucional para mantener organizada la información de las personas que utilizan el sistema. &
-El sistema solicita cédula, nombres, apellidos, correo institucional, contraseña y rol. El correo debe pertenecer al dominio @uteq.edu.ec. La cédula debe contener diez dígitos numéricos. &
-Alta &
-RF-01, RF-02, RF-03\\
-
-HU-02 &
-Como Administrador, quiero evitar registros duplicados para mantener información única de cada usuario. &
-El sistema verifica que la cédula y el correo no estén registrados previamente. Si alguno está duplicado, rechaza el registro e informa el motivo. &
-Alta &
-RF-04\\
-
-HU-03 &
-Como Administrador, quiero modificar y desactivar usuarios para mantener actualizada la información y controlar quién puede acceder al sistema. &
-El sistema permite modificar los datos del usuario y cambiar su estado. La desactivación conserva el registro y su historial de acciones. &
-Alta &
-RF-06, RF-07\\
-
-HU-04 &
-Como Administrador, quiero consultar y filtrar los usuarios registrados para encontrar rápidamente una cuenta. &
-El listado permite filtrar por rol, estado, nombre, apellido o cédula. &
-Media &
-RF-08\\
-
-HU-05 &
-Como Administrador, quiero administrar los roles y permisos para controlar las acciones que puede realizar cada tipo de usuario. &
-El sistema permite crear, consultar, modificar y eliminar roles y permisos. También permite asignar y revocar permisos, sin duplicar asignaciones. &
-Alta &
-RF-09, RF-10, RF-11, RF-12, RF-13, RF-14\\
-
-HU-06 &
-Como Docente, quiero registrar una propuesta de evento con sus datos principales para enviarla a revisión. &
-El formulario solicita lugar, tipo de evento, título, descripción, fecha, hora de inicio y hora de fin. La hora de finalización debe ser posterior a la de inicio. &
-Alta &
-RF-17, RF-18, RF-19, RF-20, RF-21\\
-
-HU-07 &
-Como Docente, quiero adjuntar una imagen al evento y declarar su origen para identificar si fue cargada manualmente o generada mediante inteligencia artificial. &
-El sistema permite seleccionar el origen SUBIDA o IA. Si se selecciona IA, exige el prompt. Si se selecciona SUBIDA, el campo del prompt debe permanecer vacío. &
-Media &
-RF-22, RF-23, RF-24\\
-
-HU-08 &
-Como Docente, quiero agregar información específica según el tipo de evento para registrar correctamente sus características. &
-El sistema permite registrar pares de nombre y valor para los campos adicionales. No permite dos campos con el mismo nombre dentro de un evento. &
-Media &
-RF-25, RF-26\\
-
-HU-09 &
-Como Docente, quiero adjuntar el informe PDF y enviar la propuesta para que la Coordinación pueda revisarla. &
-El informe PDF es obligatorio. Al enviar la propuesta, el sistema registra el evento y su propuesta asociada, asigna el estado PENDIENTE y genera un código QR. &
-Alta &
-RF-27, RF-28, RF-29, RF-30, RF-31\\
-
-HU-10 &
-Como Coordinador, quiero consultar el informe de respaldo y revisar las propuestas enviadas para controlar el proceso de aprobación de los eventos. &
-El sistema restringe la visualización del informe PDF al rol COORDINADOR.  &
-Alta &El registro de propuestas se limita al rol DOCENTE con el permiso EVENTO\_PROPONER.
-RF-32, RF-33\\
-
+HU-01 & Como Administrador, quiero registrar usuarios con sus datos personales y correo institucional para mantener organizada la información. & El formulario solicita cédula, nombres, apellidos, correo, contraseña y rol. Se valida el formato de cédula y el dominio institucional definido para el registro. & Alta & RF-01 a RF-03\\
+HU-02 & Como Administrador, quiero evitar registros duplicados para mantener información única. & El sistema comprueba que cédula y correo no estén registrados. Si existe un duplicado, rechaza el registro e informa el motivo. & Alta & RF-04\\
+HU-03 & Como Administrador, quiero modificar y desactivar usuarios para mantener actualizada la información y controlar el acceso. & El sistema permite modificar datos y cambiar el estado de una cuenta. La desactivación no equivale a eliminar el historial asociado. & Alta & RF-06 y RF-07\\
+HU-04 & Como Administrador, quiero consultar y filtrar usuarios para encontrar rápidamente una cuenta. & El listado permite filtrar por rol, estado, nombre, apellido o cédula, según la especificación del módulo. & Media & RF-08\\
+HU-05 & Como Administrador, quiero administrar roles y permisos para controlar las acciones de cada tipo de usuario. & El sistema permite gestionar roles y permisos, así como asignar o revocar permisos de acuerdo con las reglas del módulo. & Alta & RF-09 a RF-14\\
+HU-06 & Como Docente, quiero registrar una propuesta de evento con sus datos principales para enviarla a revisión. & El formulario solicita lugar, tipo, título, descripción, fecha y horas de inicio y fin. La hora final debe ser posterior a la inicial. & Alta & RF-17 a RF-21\\
+HU-07 & Como Docente, quiero adjuntar una imagen e indicar su origen para identificar si fue cargada o generada mediante IA. & El sistema permite indicar el origen. Cuando se selecciona generación mediante IA, se registra el prompt correspondiente según la especificación del módulo. & Media & RF-22 a RF-24\\
+HU-08 & Como Docente, quiero agregar información específica según el tipo de evento para registrar sus características. & El sistema permite registrar campos adicionales como pares de nombre y valor y evita nombres repetidos dentro de una propuesta. & Media & RF-25 y RF-26\\
+HU-09 & Como Docente, quiero adjuntar el informe PDF y enviar la propuesta para que la Coordinación pueda revisarla. & El informe PDF se adjunta a la propuesta. Al enviarla, el sistema registra la solicitud y utiliza el estado inicial definido por la especificación del módulo. & Alta & RF-27 a RF-31\\
+HU-10 & Como Coordinador, quiero revisar las propuestas y consultar su documentación de respaldo para gestionar su aprobación o rechazo. & El sistema permite revisar la propuesta y su documentación y restringe estas operaciones al rol autorizado según la especificación del módulo. & Alta & RF-32 y RF-33\\
 \bottomrule
 \end{longtable}
 
-\subsection{Requisitos no funcionales}
+\noindent\textit{Nota:} las historias HU-01 a HU-10 describen el alcance de los dos módulos detallados; no representan la totalidad de los requisitos funcionales del SREI.
 
-Los requisitos no funcionales establecen condiciones de calidad que deben considerarse durante el desarrollo y funcionamiento del sistema. Se utilizan los identificadores originales de la especificación y se relacionan con características de calidad de ISO/IEC 25010.
+\subsection{Requisitos de calidad y no funcionales}
+La siguiente tabla resume los identificadores originales. No se sustituyen por métricas que no constan en la especificación.
 
-\begin{longtable}{p{0.11\textwidth} p{0.28\textwidth} p{0.24\textwidth} p{0.25\textwidth}}
-\caption{Requisitos no funcionales y criterios de verificación}\\
+\begin{longtable}{p{0.18\textwidth} p{0.56\textwidth} p{0.14\textwidth}}
+\caption{Requisitos de calidad del documento fuente}\\
 \toprule
-\textbf{ID} & \textbf{Requisito} & \textbf{Criterio verificable} & \textbf{Característica ISO/IEC 25010}\\
+\textbf{ID original} & \textbf{Requisito resumido} & \textbf{Prioridad}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{ID} & \textbf{Requisito} & \textbf{Criterio verificable} & \textbf{Característica ISO/IEC 25010}\\
+\textbf{ID original} & \textbf{Requisito resumido} & \textbf{Prioridad}\\
 \midrule
 \endhead
-
-PERS-01 &
-El registro de usuarios y la actualización del catálogo de roles y permisos deben completarse en un tiempo no mayor a 3 segundos, bajo condiciones normales de operación. &
-Medir desde el envío del formulario hasta la confirmación visible. El tiempo no debe superar los 3 segundos. &
-Eficiencia del desempeño: comportamiento temporal.\\
-
-PERS-02 &
-El registro de una propuesta, incluyendo el informe PDF y la imagen, debe completarse en un tiempo no mayor a 5 segundos para archivos de hasta 10 MB, bajo condiciones normales de operación. &
-Realizar el registro con archivos dentro del límite indicado y medir el tiempo de respuesta. &
-Eficiencia del desempeño: comportamiento temporal y capacidad.\\
-
-USARS-01 &
-El formulario de registro de usuario debe mostrar mensajes específicos junto a los campos que presenten errores de validación. &
-Comprobar los tres casos indicados: correo fuera del dominio institucional, cédula incorrecta y datos duplicados. &
-Capacidad de interacción: asistencia al usuario.\\
-
-USARS-02 &
-El formulario de eventos debe mostrar u ocultar dinámicamente el campo de aforo según el tipo de espacio seleccionado. &
-Verificar los dos estados: espacio CERRADO, que exige aforo mayor a cero, y espacio ABIERTO, que mantiene el campo sin valor. &
-Capacidad de interacción: operabilidad.\\
-
-USARS-03 &
-El listado de usuarios debe ofrecer controles de búsqueda y filtrado sin recargar la página completa. &
-Comprobar los tres criterios de filtrado: rol, estado y nombre o cédula. &
-Capacidad de interacción: operabilidad.\\
-
-COMPRS-02 &
-El registro de usuarios y las propuestas de eventos deben funcionar en Google Chrome, Mozilla Firefox y Microsoft Edge, sin pérdida de funcionalidad. &
-Comprobar las dos funcionalidades principales en los tres navegadores indicados. &
-Compatibilidad: adaptabilidad y coexistencia.\\
-
+QR-001 / USARS-001 & La interfaz debe ser amigable, fácil de usar y permitir una interacción intuitiva. & Alta\\
+QR-002 / PERS-001 & El sistema debe funcionar sin grandes fallos durante los días laborables. & Alta\\
+QR-003 / SECRS-001 & Se debe proteger la integridad de fotos y videos mediante marcas de agua institucionales que permitan detectar modificaciones no autorizadas. & Alta\\
+QR-004 / COMRS-001 & El sistema debe ser compatible con distintos dispositivos, incluidos computadores y teléfonos inteligentes. & Media\\
+QR-005 / PERS-002 & Las consultas deben ofrecer tiempos de respuesta rápidos; la especificación validada menciona de 0,1 a 1,0 segundos para la retroalimentación. & Media\\
+SECRS-002 & El sistema debe garantizar la integridad de los datos personales de los usuarios. & Alta\\
 \bottomrule
 \end{longtable}
 
-Además, se consideran los siguientes requisitos de seguridad establecidos en la especificación:
-
-\begin{itemize}
-    \item \textbf{SECRS-01:} las contraseñas deben almacenarse mediante un hash de una sola dirección, sin conservarlas ni transmitirlas en texto plano.
-    \item \textbf{SECRS-02:} la autenticación debe utilizar tokens JWT y verificar el rol ADMINISTRADOR y el permiso USUARIO\_GESTIONAR en cada solicitud de gestión.
-    \item \textbf{SECRS-03:} el registro de propuestas debe comprobar el rol DOCENTE y el permiso EVENTO\_PROPONER.
-    \item \textbf{SECRS-04:} la visualización y descarga del informe PDF debe estar restringida al rol COORDINADOR.
-\end{itemize}
-
-Los criterios de verificación descritos permiten comprobar las condiciones indicadas en los requisitos. Su inclusión en este documento no significa que las pruebas de aceptación o rendimiento ya se hayan ejecutado.
+Los requisitos anteriores proceden del documento fuente. Su inclusión no significa que hayan sido verificados mediante pruebas. En particular, el intervalo de PERS-002 debe evaluarse con pruebas de rendimiento antes de declarar su cumplimiento.
 
 \subsection{Restricciones del sistema}
-
-La especificación establece las siguientes restricciones:
-
+El documento fuente establece las siguientes restricciones:
 \begin{itemize}
-    \item \textbf{C-01:} el backend debe implementarse con Java 17 y Spring Boot, mientras que el frontend debe utilizar Angular con TypeScript.
-    \item \textbf{C-02:} el correo electrónico registrado debe pertenecer al dominio institucional @uteq.edu.ec.
-    \item \textbf{C-03:} el informe adjunto a la propuesta debe entregarse exclusivamente en formato PDF.
-    \item \textbf{C-04:} los roles permitidos son COORDINADOR, DOCENTE, ESTUDIANTE y ADMINISTRADOR.
+\item \textbf{C-1 de QR-001:} las interfaces de usuarios administradores o externos no deben contener imágenes ofensivas o inapropiadas.
+\item \textbf{C-2 de SyRS-005:} cuando se habiliten comentarios sobre un evento, el sistema debe asegurar la censura de comentarios malintencionados.
 \end{itemize}
+Las tecnologías y versiones concretas utilizadas en el desarrollo se describen en la sección de arquitectura o tecnologías; no se presentan aquí como restricciones originales si no constan en la especificación.
 
 \subsection{Trazabilidad de los requisitos}
-
-La trazabilidad permite relacionar las necesidades identificadas con las historias de usuario y los requisitos funcionales que las respaldan. La siguiente tabla resume esta relación.
-
-\begin{longtable}{p{0.17\textwidth} p{0.30\textwidth} p{0.20\textwidth} p{0.23\textwidth}}
+\begin{longtable}{p{0.20\textwidth} p{0.28\textwidth} p{0.17\textwidth} p{0.25\textwidth}}
 \caption{Matriz resumida de trazabilidad}\\
 \toprule
-\textbf{Fuente} & \textbf{Necesidad} & \textbf{Historia} & \textbf{Requisitos relacionados}\\
+\textbf{Fuente / ID} & \textbf{Necesidad o requisito} & \textbf{Historia} & \textbf{Referencia complementaria}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{Fuente} & \textbf{Necesidad} & \textbf{Historia} & \textbf{Requisitos relacionados}\\
+\textbf{Fuente / ID} & \textbf{Necesidad o requisito} & \textbf{Historia} & \textbf{Referencia complementaria}\\
 \midrule
 \endhead
-
-Administrador &
-Gestionar cuentas de usuarios. &
-HU-01, HU-02, HU-03, HU-04 &
-RF-01 a RF-08\\
-
-Administrador &
-Administrar roles y permisos. &
-HU-05 &
-RF-09 a RF-16\\
-
-Docente &
-Registrar propuestas de eventos. &
-HU-06 &
-RF-17 a RF-21\\
-
-Docente &
-Asociar imágenes y registrar su origen. &
-HU-07 &
-RF-22 a RF-24\\
-
-Docente &
-Registrar campos particulares de cada evento. &
-HU-08 &
-RF-25, RF-26\\
-
-Docente &
-Adjuntar el informe y enviar la propuesta. &
-HU-09 &
-RF-27 a RF-31\\
-
-Coordinador &
-Consultar los informes de respaldo y controlar el acceso. &
-HU-10 &
-RF-32, RF-33\\
-
+NRF-004 / SyRS-003 & Asignación de usuarios administrativos y control de funciones. & HU-01, HU-05 & RF internos de Gestión de Usuarios y Roles.\\
+NRF-009 / SyRS-010 & Registro de usuarios internos o externos. & HU-01, HU-02 & RF internos de Gestión de Usuarios y Roles.\\
+NRB-001 / BRS-001 & Registro de eventos por docentes de la facultad correspondiente. & HU-06 a HU-09 & RF internos de Propuesta del Evento.\\
+StRS-001 & Aprobación o rechazo de propuestas enviadas por docentes. & HU-10 & RF internos de Propuesta del Evento.\\
+NRF-012 / SyRS-012 & Envío de propuestas con información del evento. & HU-06, HU-08, HU-09 & RF internos de Propuesta del Evento.\\
+QR-001 / USARS-001 & Interfaz amigable e interacción intuitiva. & HU-01 a HU-10 & Requisito de calidad transversal.\\
+QR-002 / PERS-001 & Funcionamiento estable durante días laborables. & HU-01 a HU-10 & Requisito de calidad transversal.\\
 \bottomrule
 \end{longtable}
 
 \subsection{Consideraciones de validación}
+Los requisitos e historias de usuario permiten organizar el alcance funcional y establecer condiciones que podrán comprobarse durante las pruebas. Su inclusión no significa, por sí sola, que todas las funcionalidades o características de calidad hayan superado pruebas de aceptación.
 
-Los requisitos presentados conservan los identificadores de la especificación documental utilizada como fuente. La validación técnica de cada funcionalidad deberá realizarse durante las pruebas del sistema, comprobando los criterios de aceptación y las restricciones correspondientes.
-
-Las grabaciones de audio de las entrevistas y validaciones se conservan como evidencias del proceso de levantamiento. Cuando se incorporen observaciones adicionales de los interesados, estas deberán registrarse y relacionarse con el requisito afectado, sin modificar su trazabilidad original.
+Las grabaciones de entrevistas y validaciones se conservan como evidencias del levantamiento. Cualquier observación posterior deberá registrarse junto con su fuente, el requisito afectado y el cambio realizado, sin modificar silenciosamente los identificadores originales.

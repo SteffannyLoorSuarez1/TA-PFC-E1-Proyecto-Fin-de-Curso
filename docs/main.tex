@@ -17,7 +17,7 @@
 \usepackage{csquotes}
 \usepackage{hyperref}
 
-% Configuración de página
+
 \geometry{
     left=2.5cm,
     right=2.5cm,
@@ -27,7 +27,7 @@
 
 \onehalfspacing
 
-% Bibliografía IEEE
+
 \usepackage[
     backend=biber,
     style=ieee,
@@ -35,8 +35,9 @@
 ]{biblatex}
 
 \addbibresource{referencias/jordan.bib}
+\addbibresource{referencias/washington.bib}
 
-% Datos del proyecto
+
 \title{Sistema de Registro de Eventos Interculturales (SREI)}
 \author{Proyecto Fin de Curso}
 \date{Noviembre de 2026}
@@ -56,6 +57,7 @@
 
 \input{secciones/01-contexto}
 \input{secciones/02-requisitos}
+\input{secciones/03-arquitectura}
 \input{secciones/05-plan-aportes}
 
 \newpage

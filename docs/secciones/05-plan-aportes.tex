@@ -15,6 +15,7 @@ La organización busca que cada integrante tenga actividades definidas y que los
 \textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
 \midrule
 \endfirsthead
+
 \toprule
 \textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
 \midrule
@@ -47,16 +48,21 @@ Los Product Owners que proporcionan requisitos y orientaciones para el sistema s
     \item Msc. Elizabeth Johanna Contreras Jara, docente de Educación Inicial de la Facultad de Ciencias de la Educación.
 \end{itemize}
 
+\subsection{Organización del trabajo}
+
+Para facilitar el desarrollo, las actividades se distribuyen en bloques de trabajo relacionados con los entregables del proyecto:
+
 \subsubsection{Asignación de roles técnicos}
 
-Debido a que el equipo está conformado por tres integrantes y se requieren cuatro responsabilidades técnicas, uno de los integrantes asume dos roles. La siguiente distribución se plantea para organizar el trabajo del proyecto:
+La distribución de responsabilidades técnicas se establece de acuerdo con las actividades asignadas a los tres integrantes del equipo. Debido a que se requieren cuatro responsabilidades, uno de los integrantes asume dos roles.
 
 \begin{longtable}{p{0.32\textwidth} p{0.28\textwidth} p{0.30\textwidth}}
-\caption{Asignación propuesta de roles técnicos}\\
+\caption{Asignación de roles técnicos}\\
 \toprule
 \textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
 \midrule
 \endfirsthead
+
 \toprule
 \textbf{Integrante} & \textbf{Rol} & \textbf{Responsabilidad}\\
 \midrule
@@ -71,31 +77,15 @@ Responsable de Calidad &
 Seguimiento de los criterios de calidad y verificación de los requisitos.\\
 
 Jordan Josue Loor Suárez &
-Líder de Desarrollo &
-Coordinación del desarrollo y seguimiento de la implementación.\\
+Responsable de Requisitos y Documentación &
+Levantamiento, organización y documentación de los requisitos del sistema.\\
 
 Steffanny del Rocío Loor Suárez &
-Responsable de Documentación &
-Organización y consolidación de la documentación técnica.\\
+Líder de Desarrollo &
+Implementación del esqueleto del sistema, desarrollo de servicios y comprobación de la comunicación entre componentes.\\
 
 \bottomrule
 \end{longtable}
-
-Esta distribución es una propuesta de organización y deberá ser revisada y aceptada por los integrantes del equipo.
-
-\subsection{Organización del trabajo}
-
-Para facilitar el desarrollo, las actividades se distribuyen en bloques de trabajo relacionados con los entregables del proyecto:
-
-\begin{enumerate}
-    \item \textbf{Levantamiento y análisis:} identificación de interesados, recopilación de necesidades, análisis de requisitos y elaboración de historias de usuario.
-
-    \item \textbf{Arquitectura y diseño:} elaboración de diagramas de contexto y contenedores, identificación de componentes y documentación de decisiones arquitectónicas.
-
-    \item \textbf{Desarrollo:} preparación de la estructura del proyecto, implementación inicial de los servicios y comprobación de la comunicación entre componentes.
-
-    \item \textbf{Calidad y documentación:} revisión de requisitos, criterios de aceptación, evidencias de ejecución y consolidación del informe.
-\end{enumerate}
 
 \subsection{Cronograma de entregas}
 
@@ -107,6 +97,7 @@ El proyecto se organiza en cuatro entregas principales, distribuidas de acuerdo 
 \textbf{Entrega} & \textbf{Semana} & \textbf{Actividades principales}\\
 \midrule
 \endfirsthead
+
 \toprule
 \textbf{Entrega} & \textbf{Semana} & \textbf{Actividades principales}\\
 \midrule
@@ -147,6 +138,7 @@ Las evidencias de diseño, levantamiento y ejecución se organizan en las carpet
 
 \begin{itemize}
     \item \texttt{evidencias/levantamiento/}: documentos y registros relacionados con la recopilación de información.
+    \item \texttt{evidencias/levantamiento/entrevistas/}: grabaciones de entrevistas y validaciones realizadas con los interesados.
     \item \texttt{evidencias/diseno/}: evidencias de diagramas y decisiones de diseño.
     \item \texttt{evidencias/ejecucion/}: capturas y resultados de las comprobaciones realizadas.
 \end{itemize}
@@ -163,6 +155,7 @@ La siguiente tabla presenta los aportes identificados en el historial disponible
 \textbf{Integrante} & \textbf{Aporte registrado} & \textbf{Evidencia}\\
 \midrule
 \endfirsthead
+
 \toprule
 \textbf{Integrante} & \textbf{Aporte registrado} & \textbf{Evidencia}\\
 \midrule
@@ -176,18 +169,22 @@ Jordan Loor Suárez &
 Elaboración de historias de usuario, criterios de aceptación y requisitos del sistema. &
 Commit 329f5cc.\\
 
-Washington Apunte Pazmiño &
-Arquitectura y documentación de calidad. &
-Pendiente de verificación.\\
+Jordan Loor Suárez &
+Organización de roles, responsabilidades, cronograma y registro de aportes. &
+Commit 111a8b5.\\
 
-Steffanny Loor Suárez &
-Preparación del esqueleto del sistema y documentación de comunicación entre servicios. &
-Pendiente de verificación.\\
+Washington Apunte Pazmiño &
+Elaboración de la arquitectura, documentación de requisitos no funcionales y análisis CAP/PACELC. &
+Commits 5ee9e54, 08e6324 y 4563e78.\\
+
+Steffanny del Rocío Loor Suárez &
+Implementación del servicio proveedor de eventos, desarrollo del consumidor REST y documentación de la comunicación entre servicios. &
+Commits 452b5c9, 4e11ee2 y f656a31.\\
 
 \bottomrule
 \end{longtable}
 
-El registro se actualizará conforme se incorporen nuevos avances y se disponga de sus respectivas evidencias. Los enlaces a los commits y a los issues correspondientes permitirán verificar la participación individual.
+El registro presenta los aportes identificados en el historial del repositorio. Los identificadores de commit permiten consultar los cambios realizados y relacionarlos con las actividades asignadas a cada integrante. La tabla podrá ampliarse conforme se incorporen nuevos avances al proyecto.
 
 \subsection{Uso de herramientas de inteligencia artificial}
 
@@ -195,4 +192,4 @@ Se utilizaron herramientas de inteligencia artificial como apoyo durante la elab
 
 El contenido generado o sugerido mediante estas herramientas debe ser revisado por los integrantes antes de incorporarse a los entregables. La información, los requisitos, las decisiones técnicas y las evidencias presentadas deben corresponder al trabajo realizado y a las fuentes consultadas.
 
-La utilización de estas herramientas no sustituye la revisión del equipo ni la responsabilidad de sus integrantes sobre el contenido final del proyecto.
+La utilización de estas herramientas no sustituye la revisión del equipo ni la responsabilidad de sus integrantes sobre el contenido final.
