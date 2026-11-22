@@ -11,7 +11,7 @@ SREI lo usan cinco tipos de personas. Cuatro pertenecen a la UTEQ: el docente qu
 \end{figure}
 
 \subsection{Contenedores}
-La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 17, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace \mbox{INT-01}, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
+La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 21, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace \mbox{INT-01}, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
 
 \begin{figure}[p]
   \centering
