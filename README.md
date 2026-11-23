@@ -177,7 +177,7 @@ Se midieron tres requisitos no funcionales sobre el prototipo, en local, el 22/1
 |---|---|---|---|
 | RNF-01 Comportamiento temporal | 30 peticiones GET a `/api/consultas/evento`: promedio 0.0046 s y máximo 0.0148 s (umbral: máximo 1.0 s) | Cumple | `washington-04` |
 | RNF-06 Modularidad | servicio-eventos responde solo en el puerto 8080, y servicio-consulta arranca en el 8081 con servicio-eventos apagado | Cumple | `washington-05`, `washington-06`, `washington-07` |
-| RNF-02 Tolerancia a fallos | Con servicio-eventos apagado, las 5 peticiones a `/api/consultas/evento` reciben un error 500; servicio-consulta sigue respondiendo | No se cumple todavía: falta devolver 503 con un mensaje claro (riesgo R-04) | `washington-07` |
+| RNF-02 Tolerancia a fallos | Con servicio-eventos apagado, las 5 peticiones a `/api/consultas/evento` reciben un 503 con mensaje claro, entre 0.018 y 0.039 s (umbral: 2 s). Antes de la corrección recibían un 500 | Cumple (antes de la corrección no se cumplía) | `washington-07` (antes), `washington-08` y `steffanny-04` (ahora) |
 
 RNF-03, RNF-04 y RNF-05 dependen de la aplicación web y de servicio-usuarios, así que se medirán cuando existan.
 
