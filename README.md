@@ -19,7 +19,7 @@ Primera entrega: **TA-PFC-E1 — Propuesta y análisis del sistema distribuido**
 
 ## Video de la entrega
 
-Enlace al video: **PEGAR_AQUI_EL_ENLACE_DEL_VIDEO**
+Enlace al video: https://github.com/SteffannyLoorSuarez1/TA-PFC-E1-Proyecto-Fin-de-Curso/edit/main/README.md
 
 ## Equipo
 
