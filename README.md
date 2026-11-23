@@ -1,4 +1,4 @@
-﻿# SREI — Sistema de Registro de Eventos Interculturales
+# SREI — Sistema de Registro de Eventos Interculturales
 
 Repositorio del Proyecto Fin de Curso (PFC) de Aplicaciones Distribuidas.
 Primera entrega: **TA-PFC-E1 — Propuesta y análisis del sistema distribuido**.

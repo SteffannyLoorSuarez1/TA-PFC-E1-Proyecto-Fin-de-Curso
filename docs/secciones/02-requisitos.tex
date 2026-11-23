@@ -8,8 +8,26 @@ La entrevista fue la técnica utilizada para conocer las necesidades de las pers
 
 Como evidencias complementarias se conservan grabaciones de entrevistas y validaciones. Los archivos de audio respaldan el proceso de recopilación de información, pero no se consideran transcripciones. También se consultan las especificaciones de Gestión de Usuarios y Roles y Propuesta del Evento para detallar las funcionalidades de esos módulos.
 
+\begin{longtable}{P{0.66\textwidth} P{0.24\textwidth}}
+\caption{Grabaciones del levantamiento disponibles en el repositorio}\\
+\toprule
+\textbf{Archivo en evidencias/levantamiento/entrevistas/} & \textbf{Duración}\\
+\midrule
+\endfirsthead
+\toprule
+\textbf{Archivo} & \textbf{Duración}\\
+\midrule
+\endhead
+EntrevistaCoordinadora.mp4 & 10 min 44 s\\
+EntrevistaDecanoFCC.mp4 & 12 min 23 s\\
+Lic.Johanna.mp3 & 19 min 57 s\\
+Validación coordinadora de Software.m4a & 11 min 09 s\\
+Validación de requisitos con el Decano de la FCCDD.m4a & 10 min 40 s\\
+\bottomrule
+\end{longtable}
+
 \subsection{Perfiles de los interesados}
-\begin{longtable}{p{0.36\textwidth} p{0.56\textwidth}}
+\begin{longtable}{P{0.36\textwidth} P{0.56\textwidth}}
 \caption{Perfiles de los interesados del SREI}\\
 \toprule
 \textbf{Interesado} & \textbf{Rol y participación}\\
@@ -19,10 +37,11 @@ Como evidencias complementarias se conservan grabaciones de entrevistas y valida
 \textbf{Interesado} & \textbf{Rol y participación}\\
 \midrule
 \endhead
-Ing. Jéssica Alexandra Ponce Ordóñez & Coordinadora de la carrera de Software de la FCCDD, UTEQ. Aporta necesidades relacionadas con la gestión y coordinación de eventos.\\
+Ing. Jéssica Alexandra Ponce Ordóñez & Coordinadora de la carrera de Software de la FCC, UTEQ. Aporta necesidades relacionadas con la gestión y coordinación de eventos.\\
 Ing. Washington Alberto Chiriboga Casanova & Decano de la Facultad de Ciencias de la Computación y Diseño Digital, UTEQ. Aporta necesidades relacionadas con informes, difusión y gestión institucional.\\
 Msc. Elizabeth Johanna Contreras Jara & Docente de Educación Inicial de la Facultad de Ciencias de la Educación, UTEQ. Aporta necesidades relacionadas con propuestas y seguimiento de eventos.\\
 Estudiantes y asistentes & Usuarios que consultan eventos, se registran y participan en las actividades.\\
+Geovanny Ochoa & Estudiante entrevistado que aportó su perspectiva sobre las necesidades de participación en los eventos.\\
 Dr. Gleiston Cicerón Guerrero Ulloa & Scrum Master y tutor académico del proceso.\\
 Washington Germán Apunte Pazmiño, Jordan Josue Loor Suárez y Steffanny del Rocío Loor Suárez & Integrantes del equipo responsable del análisis, diseño, desarrollo y documentación del SREI.\\
 \bottomrule
@@ -48,7 +67,7 @@ El documento fuente establece dos requisitos de negocio:
 \end{itemize}
 
 \subsection{Requisitos de los interesados}
-\begin{longtable}{p{0.13\textwidth} p{0.59\textwidth} p{0.18\textwidth}}
+\begin{longtable}{P{0.13\textwidth} P{0.59\textwidth} P{0.18\textwidth}}
 \caption{Requisitos de los interesados}\\
 \toprule
 \textbf{ID} & \textbf{Requisito resumido} & \textbf{Fuente}\\
@@ -83,14 +102,14 @@ El documento también contempla difusión en redes sociales, retroalimentación,
 \subsection{Historias de usuario de los módulos especificados}
 Las historias siguientes se derivan de las especificaciones de Gestión de Usuarios y Roles y Propuesta del Evento. Los códigos RF son identificadores internos de esas especificaciones; no sustituyen ni renumeran los identificadores SyRS del documento fuente.
 
-\begin{longtable}{p{0.07\textwidth} p{0.31\textwidth} p{0.37\textwidth} p{0.08\textwidth} p{0.12\textwidth}}
+\begin{longtable}{P{0.08\textwidth} P{0.30\textwidth} P{0.32\textwidth} P{0.08\textwidth} P{0.12\textwidth}}
 \caption{Historias de usuario y criterios de aceptación}\\
 \toprule
-\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prioridad} & \textbf{RF interno}\\
+\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prio-\newline ridad} & \textbf{RF interno}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prioridad} & \textbf{RF interno}\\
+\textbf{ID} & \textbf{Historia de usuario} & \textbf{Criterios de aceptación} & \textbf{Prio-\newline ridad} & \textbf{RF interno}\\
 \midrule
 \endhead
 HU-01 & Como Administrador, quiero registrar usuarios con sus datos personales y correo institucional para mantener organizada la información. & El formulario solicita cédula, nombres, apellidos, correo, contraseña y rol. Se valida el formato de cédula y el dominio institucional definido para el registro. & Alta & RF-01 a RF-03\\
@@ -111,14 +130,14 @@ HU-10 & Como Coordinador, quiero revisar las propuestas y consultar su documenta
 \subsection{Requisitos de calidad y no funcionales}
 La siguiente tabla resume los identificadores originales. No se sustituyen por métricas que no constan en la especificación.
 
-\begin{longtable}{p{0.18\textwidth} p{0.56\textwidth} p{0.14\textwidth}}
+\begin{longtable}{P{0.18\textwidth} P{0.56\textwidth} P{0.14\textwidth}}
 \caption{Requisitos de calidad del documento fuente}\\
 \toprule
-\textbf{ID original} & \textbf{Requisito resumido} & \textbf{Prioridad}\\
+\textbf{ID original} & \textbf{Requisito resumido} & \textbf{Prio-\newline ridad}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{ID original} & \textbf{Requisito resumido} & \textbf{Prioridad}\\
+\textbf{ID original} & \textbf{Requisito resumido} & \textbf{Prio-\newline ridad}\\
 \midrule
 \endhead
 QR-001 / USARS-001 & La interfaz debe ser amigable, fácil de usar y permitir una interacción intuitiva. & Alta\\
@@ -140,26 +159,34 @@ El documento fuente establece las siguientes restricciones:
 \end{itemize}
 Las tecnologías y versiones concretas utilizadas en el desarrollo se describen en la sección de arquitectura o tecnologías; no se presentan aquí como restricciones originales si no constan en la especificación.
 
+
 \subsection{Trazabilidad de los requisitos}
-\begin{longtable}{p{0.20\textwidth} p{0.28\textwidth} p{0.17\textwidth} p{0.25\textwidth}}
-\caption{Matriz resumida de trazabilidad}\\
+La matriz conserva los identificadores y las relaciones entre requisitos e historias de la documentación del proyecto. Las necesidades generales que no corresponden a los dos módulos detallados se distinguen del alcance de HU-01 a HU-10. Las referencias a grabaciones identifican fuentes de consulta; la existencia del archivo no acredita por sí sola aprobación ni consentimiento para su difusión.
+
+{\small
+\begin{longtable}{P{0.18\textwidth} P{0.18\textwidth} P{0.22\textwidth} P{0.12\textwidth} P{0.22\textwidth}}
+\caption{Matriz de trazabilidad de requisitos}\\
 \toprule
-\textbf{Fuente / ID} & \textbf{Necesidad o requisito} & \textbf{Historia} & \textbf{Referencia complementaria}\\
+\textbf{Fuente documental} & \textbf{ID del registro} & \textbf{Necesidad} & \textbf{Historia} & \textbf{Grabación relacionada}\\
 \midrule
 \endfirsthead
 \toprule
-\textbf{Fuente / ID} & \textbf{Necesidad o requisito} & \textbf{Historia} & \textbf{Referencia complementaria}\\
+\textbf{Fuente documental} & \textbf{ID del registro} & \textbf{Necesidad} & \textbf{Historia} & \textbf{Grabación relacionada}\\
 \midrule
 \endhead
-NRF-004 / SyRS-003 & Asignación de usuarios administrativos y control de funciones. & HU-01, HU-05 & RF internos de Gestión de Usuarios y Roles.\\
-NRF-009 / SyRS-010 & Registro de usuarios internos o externos. & HU-01, HU-02 & RF internos de Gestión de Usuarios y Roles.\\
-NRB-001 / BRS-001 & Registro de eventos por docentes de la facultad correspondiente. & HU-06 a HU-09 & RF internos de Propuesta del Evento.\\
-StRS-001 & Aprobación o rechazo de propuestas enviadas por docentes. & HU-10 & RF internos de Propuesta del Evento.\\
-NRF-012 / SyRS-012 & Envío de propuestas con información del evento. & HU-06, HU-08, HU-09 & RF internos de Propuesta del Evento.\\
-QR-001 / USARS-001 & Interfaz amigable e interacción intuitiva. & HU-01 a HU-10 & Requisito de calidad transversal.\\
-QR-002 / PERS-001 & Funcionamiento estable durante días laborables. & HU-01 a HU-10 & Requisito de calidad transversal.\\
+Especificación general; Gestión de Usuarios y Roles & NRF-004 / SyRS-003 & Asignar usuarios administrativos y controlar funciones. & HU-01, HU-05 & Entrevista al Decano: roles y responsabilidades.\\
+Especificación general; Gestión de Usuarios y Roles & NRF-009 / SyRS-010 & Registrar usuarios internos o externos. & HU-01, HU-02 & Gestión de Usuarios y Roles, RF-01 a RF-04 (relación documental).\\
+Especificación general; Propuesta del Evento & NRB-001 / BRS-001 & Registrar eventos propuestos por docentes de la facultad. & HU-06 a HU-09 & Entrevista a la coordinadora: registro de eventos, ubicación y resultados.\\
+Especificación general; Propuesta del Evento & StRS-001 & Aprobar o rechazar propuestas de docentes. & HU-10 & Validación con la coordinadora y validación con el Decano.\\
+Especificación general; Propuesta del Evento & NRF-012 / SyRS-012 & Enviar propuestas con información del evento. & HU-06, HU-08, HU-09 & Propuesta del Evento, RF-17 a RF-31 (relación documental).\\
+Especificación general & QR-001 / USARS-001 & Facilitar una interfaz amigable e interacción intuitiva. & HU-01 a HU-10 & Criterio transversal de calidad.\\
+Especificación general & QR-002 / PERS-001 & Mantener funcionamiento estable durante días laborables. & HU-01 a HU-10 & Criterio transversal de calidad.\\
+Especificación general & StRS-003 & Obtener informes de estadísticas y logros de los eventos. & Alcance general & Entrevista al Decano: informes de logros y participación.\\
+Especificación general & QR-003 / SECRS-001 & Proteger los recursos audiovisuales mediante identificación institucional. & Alcance general & Entrevista al Decano: marcas de agua en fotografías.\\
+Especificación general & QR-004 / COMRS-001 & Acceder desde computadores y dispositivos móviles. & Transversal & Entrevista al Decano: adaptación a dispositivos.\\
 \bottomrule
 \end{longtable}
+}
 
 \subsection{Consideraciones de validación}
 Los requisitos e historias de usuario permiten organizar el alcance funcional y establecer condiciones que podrán comprobarse durante las pruebas. Su inclusión no significa, por sí sola, que todas las funcionalidades o características de calidad hayan superado pruebas de aceptación.
