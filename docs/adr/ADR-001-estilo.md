@@ -5,7 +5,7 @@
 - Responsable: Washington Apunte (Arquitecto)
 
 ## Contexto
-SREI es una aplicación web cliente-servidor organizada en capas: un frontend Angular 17 (SPA) usa la API REST de un único backend Spring Boot (Java 17), que trabaja con una sola base de datos PostgreSQL.
+SREI es una aplicación web cliente-servidor organizada en capas: un frontend Angular 21 (SPA) usa la API REST de un único backend Spring Boot (Java 17), que trabaja con una sola base de datos PostgreSQL.
 Ese backend concentra toda la lógica de negocio (eventos, propuestas, inscripciones, usuarios, sesiones y estadísticas), la seguridad con JWT y el almacenamiento de imágenes y PDF en el disco del servidor.
 El acceso se controla por roles (RBAC): decano, coordinador, docente y asistente (estudiante o usuario externo), cada uno con sus propias vistas y permisos.
 El PFC exige que SREI sea un sistema distribuido, pero hoy todo corre en un solo backend con una sola base de datos, así que hay que decidir qué estilo de arquitectura adoptar.
@@ -43,7 +43,7 @@ Elegimos la opción C. SREI se divide en tres servicios Spring Boot con Java 21,
 - servicio-consulta (puerto 8081): atiende las consultas y le pide los datos a servicio-eventos. En E2 pasa a manejar las inscripciones.
 - servicio-usuarios (previsto): maneja usuarios, roles y el inicio de sesión.
 
-Cada servicio tiene su propia base PostgreSQL y ninguno entra a la base de otro. La aplicación web en Angular 17 llama a los servicios por REST/HTTPS. Entre servicios se usa REST/HTTP síncrono, como dice el ADR-002. El servicio de IA sigue siendo externo.
+Cada servicio tiene su propia base PostgreSQL y ninguno entra a la base de otro. La aplicación web en Angular 21 llama a los servicios por REST/HTTPS. Entre servicios se usa REST/HTTP síncrono, como dice el ADR-002. El servicio de IA sigue siendo externo.
 
 Los nombres, puertos e IDs (INT-01 a INT-09) son los del issue #5 y del diagrama `c4-contenedores`. Por ahora solo están hechos servicio-eventos, servicio-consulta y el enlace INT-01. Lo demás está previsto.
 
