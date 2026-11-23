@@ -12,10 +12,19 @@
 \usepackage{float}
 \usepackage{booktabs}
 \usepackage{longtable}
+\usepackage{etoolbox}
+% Compatibilidad con longtable anterior a la corrección latex3/latex2e#1907.
+\makeatletter
+\patchcmd{\LT@output}{\vss}{\vskip 0pt plus 1fil}{}{}
+\patchcmd{\LT@output}{\vss}{\vskip 0pt plus 1fil}{}{}
+\makeatother
 \usepackage{array}
 \usepackage{enumitem}
 \usepackage{csquotes}
 \usepackage{hyperref}
+\setlength{\emergencystretch}{2em}
+\setlength{\tabcolsep}{3pt}
+\newcolumntype{P}[1]{>{\raggedright\arraybackslash}p{#1}}
 
 
 \geometry{
@@ -26,6 +35,7 @@
 }
 
 \onehalfspacing
+\raggedbottom
 
 
 \usepackage[
@@ -38,19 +48,74 @@
 \addbibresource{referencias/washington.bib}
 
 
-\title{Sistema de Registro de Eventos Interculturales (SREI)}
-\author{Proyecto Fin de Curso}
-\date{Noviembre de 2026}
 
+\DefineBibliographyStrings{spanish}{artno={artículo}}
 \begin{document}
 
-\maketitle
+\begin{titlepage}
+    \centering
 
-\begin{center}
-    \textbf{Aplicaciones Distribuidas}\\
-    Universidad Técnica Estatal de Quevedo\\
-    Periodo académico 2026--2027
-\end{center}
+    \vspace*{1cm}
+
+    {\Large UNIVERSIDAD TÉCNICA ESTATAL DE QUEVEDO\par}
+
+    \vspace{0.5cm}
+
+    {\large Aplicaciones Distribuidas\par}
+
+    \vspace{2cm}
+
+    {\Large\bfseries PROYECTO FIN DE CURSO\par}
+
+    \vspace{0.8cm}
+
+    {\LARGE\bfseries Sistema de Registro de Eventos
+    Interculturales (SREI)\par}
+
+    \vspace{1.5cm}
+
+    {\large\bfseries Integrantes y responsabilidades\par}
+
+    \vspace{0.5cm}
+
+    \begin{flushleft}
+    \textbf{Washington Germán Apunte Pazmiño}
+    \begin{itemize}
+        \item Arquitecto.
+        \item Responsable de Calidad.
+    \end{itemize}
+
+    \textbf{Jordan Josue Loor Suárez}
+\begin{itemize}
+    \item Responsable de Requisitos y Documentación.
+\end{itemize}
+
+    \textbf{Steffanny del Rocío Loor Suárez}
+    \begin{itemize}
+        \item Líder de Desarrollo.
+    \end{itemize}
+    \end{flushleft}
+
+    \vfill
+
+    \textbf{Asignatura:} Aplicaciones Distribuidas
+
+    \textbf{Periodo académico:} SPA 2026-2027
+
+    \textbf{Entrega:} 22 de noviembre de 2026
+
+    \vspace{0.5cm}
+
+    \textbf{Repositorio:}
+
+    \url{https://github.com/SteffannyLoorSuarez1/TA-PFC-E1-Proyecto-Fin-de-Curso}
+
+    \vspace{1cm}
+
+    Quevedo -- Ecuador
+
+\end{titlepage}
+
 
 \tableofcontents
 \newpage

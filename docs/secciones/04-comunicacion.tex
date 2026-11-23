@@ -1,4 +1,4 @@
-﻿\section{Comunicación entre componentes}
+\section{Comunicación entre componentes}
 
 \subsection{Descripción general}
 
@@ -9,21 +9,21 @@ Se distingue entre las comunicaciones implementadas y aquellas que todavía debe
 
 \subsection{Registro de enlaces de comunicación}
 
-La Tabla~\ref{tab:comunicacion} presenta los enlaces identificados en el diagrama C4 de contenedores. Se diferencia entre la comunicación implementada y probada y las conexiones previstas para las siguientes etapas del proyecto. Los detalles de los enlaces pendientes deberán contrastarse con la versión definitiva del diagrama.
+La Tabla~\ref{tab:comunicacion} presenta los enlaces identificados en el diagrama C4 de contenedores. Se diferencia entre la comunicación implementada y probada y las conexiones previstas para las siguientes etapas del proyecto. Los enlaces INT-02 a INT-09 corresponden a la arquitectura objetivo.
 
 \small
 \setlength{\tabcolsep}{1pt}
 \renewcommand{\arraystretch}{1.3}
 
 \begin{longtable}{
-p{0.05\textwidth}
-p{0.10\textwidth}
-p{0.11\textwidth}
-p{0.17\textwidth}
-p{0.12\textwidth}
-p{0.09\textwidth}
-p{0.16\textwidth}
-p{0.12\textwidth}
+P{0.06\textwidth}
+P{0.10\textwidth}
+P{0.11\textwidth}
+P{0.15\textwidth}
+P{0.12\textwidth}
+P{0.10\textwidth}
+P{0.16\textwidth}
+P{0.12\textwidth}
 }
 \caption{Registro de enlaces de comunicación del SREI. Fuente: elaboración propia.}
 \label{tab:comunicacion}\\
@@ -35,7 +35,7 @@ p{0.12\textwidth}
 \textbf{Información} &
 \textbf{Mec.} &
 \textbf{Tipo} &
-\textbf{Justificación} &
+\textbf{Justifi-\allowbreak cación} &
 \textbf{Estado}\\
 \midrule
 \endfirsthead
@@ -45,9 +45,9 @@ p{0.12\textwidth}
 \textbf{Origen} &
 \textbf{Destino} &
 \textbf{Información} &
-\textbf{Mecanismo} &
-\textbf{Sincronía} &
-\textbf{Justificación} &
+\textbf{Mec.} &
+\textbf{Tipo} &
+\textbf{Justifi-\allowbreak cación} &
 \textbf{Estado}\\
 \midrule
 \endhead
@@ -56,61 +56,61 @@ p{0.12\textwidth}
 \endfoot
 
 INT-01 &
-servicio-consulta &
-servicio-eventos &
+servicio-\allowbreak consulta &
+servicio-\allowbreak eventos &
 Solicitud y respuesta con información del evento. &
-REST/HTTP &
+REST/\allowbreak HTTP &
 Síncrona &
 Permite consultar información del evento y utilizar la respuesta recibida. &
-Implementado y probado.\\
+Implemen-\allowbreak tado y probado.\\
 
 INT-02 &
-servicio-consulta &
-servicio-usuarios &
+servicio-\allowbreak consulta &
+servicio-\allowbreak usuarios &
 Solicitudes de validación de usuarios. &
-REST/HTTP &
+REST/\allowbreak HTTP &
 Por definir &
 Permite verificar usuarios antes de ejecutar operaciones que requieran validación. &
 Previsto.\\
 
 INT-03 &
-servicio-eventos &
+servicio-\allowbreak eventos &
 Servicio de IA &
 Solicitud relacionada con la generación de imágenes. &
-HTTPS/REST &
+HTTPS/\allowbreak REST &
 Por definir &
 Permite incorporar la generación de imágenes como servicio externo. &
 Previsto.\\
 
 INT-04 &
-Aplicación web &
-servicio-eventos &
+Aplica\-ción\newline web &
+servicio-\allowbreak eventos &
 Solicitudes relacionadas con la gestión de eventos. &
-REST/HTTPS &
+REST/\allowbreak HTTPS &
 Por definir &
 Permite que la aplicación web acceda a las operaciones de gestión de eventos. &
 Previsto.\\
 
 INT-05 &
-Aplicación web &
-servicio-consulta &
+Aplica\-ción\newline web &
+servicio-\allowbreak consulta &
 Solicitudes de consulta de información. &
-REST/HTTPS &
+REST/\allowbreak HTTPS &
 Por definir &
 Permite consultar información del sistema desde la aplicación web. &
 Previsto.\\
 
 INT-06 &
-Aplicación web &
-servicio-usuarios &
+Aplica\-ción\newline web &
+servicio-\allowbreak usuarios &
 Solicitudes relacionadas con usuarios y autenticación. &
-REST/HTTPS &
+REST/\allowbreak HTTPS &
 Por definir &
 Permite integrar las operaciones de usuarios y autenticación con la aplicación web. &
 Previsto.\\
 
 INT-07 &
-servicio-eventos &
+servicio-\allowbreak eventos &
 Base de datos de eventos &
 Operaciones de consulta y persistencia de eventos. &
 JDBC &
@@ -119,7 +119,7 @@ Permite almacenar y recuperar la información de los eventos. &
 Previsto.\\
 
 INT-08 &
-servicio-consulta &
+servicio-\allowbreak consulta &
 Base de datos de inscripciones &
 Operaciones de consulta y persistencia de inscripciones. &
 JDBC &
@@ -128,7 +128,7 @@ Permite almacenar y recuperar la información de las inscripciones. &
 Previsto.\\
 
 INT-09 &
-servicio-usuarios &
+servicio-\allowbreak usuarios &
 Base de datos de usuarios &
 Operaciones de consulta y persistencia de usuarios. &
 JDBC &

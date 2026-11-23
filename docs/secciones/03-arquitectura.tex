@@ -28,11 +28,6 @@ SREI se relaciona con un servicio externo de inteligencia artificial generativa,
 
 \end{figure}
 
-<<<<<<< HEAD
-=======
-\subsection{Contenedores}
-La Figura~\ref{fig:c4-contenedores} muestra lo que hay dentro de SREI. Los usuarios entran por una aplicación web hecha en Angular 21, que se comunica con tres servicios Spring Boot: servicio-eventos en el puerto 8080, servicio-consulta en el puerto 8081 y servicio-usuarios. En el diseño, cada servicio guarda sus datos en su propia base PostgreSQL. Por ahora solo funcionan servicio-eventos y servicio-consulta, con el enlace \mbox{INT-01}, por el que servicio-consulta le pide los datos de un evento a servicio-eventos. La aplicación web, servicio-usuarios, las tres bases de datos y los demás enlaces todavía están previstos, por eso se dibujan con línea punteada. El servicio de IA queda fuera de la frontera del sistema y se conectará desde servicio-eventos.
->>>>>>> origin/main
 
 
 \subsection{Tecnologías utilizadas}
@@ -53,11 +48,11 @@ El SREI original cuenta con una aplicación web desarrollada con Angular y un ba
 
     \label{tab:tecnologias}
 
-    \begin{tabular}{p{3.4cm} p{6.0cm} p{3.0cm}}
+    \begin{tabular}{P{3.4cm} P{6.0cm} P{3.0cm}}
 
         \toprule
 
-        \textbf{**Área**} & \textbf{**Tecnología**} & \textbf{**Versión**} \\
+        \textbf{Área} & \textbf{Tecnología} & \textbf{Versión} \\
 
         \midrule
 
@@ -109,11 +104,11 @@ La Figura~\ref{fig:c4-contenedores} presenta la arquitectura de contenedores pro
 
 
 
-Como parte del trabajo de sistemas distribuidos se desarrolló un prototipo con dos servicios Spring Boot independientes: \texttt{servicio-eventos}, que actúa como proveedor en el puerto 8080, y \texttt{servicio-consulta}, que actúa como consumidor en el puerto 8081. Ambos se ejecutan como procesos separados. El consumidor realiza una petición HTTP mediante REST al proveedor a través del enlace \mbox{INT-01} y utiliza la respuesta recibida. Esta interacción es síncrona, porque el consumidor espera la respuesta del proveedor para continuar.
+Como parte del trabajo de sistemas distribuidos se desarrolló un prototipo con dos servicios Spring Boot independientes: \texttt{servicio-\allowbreak eventos}, que actúa como proveedor en el puerto 8080, y \texttt{servicio-\allowbreak consulta}, que actúa como consumidor en el puerto 8081. Ambos se ejecutan como procesos separados. El consumidor realiza una petición HTTP mediante REST al proveedor a través del enlace \mbox{INT-01} y utiliza la respuesta recibida. Esta interacción es síncrona, porque el consumidor espera la respuesta del proveedor para continuar.
 
 
 
-El diagrama también representa \texttt{servicio-usuarios}, la separación de datos por servicio y otros enlaces de comunicación que forman parte de la arquitectura objetivo. Estos elementos se identifican como previstos en el diseño y no como componentes cuya implementación haya quedado demostrada por la prueba de \mbox{INT-01}. La aplicación web original y el backend modular constituyen el punto de partida del proyecto; el prototipo distribuido permite comprobar la comunicación entre procesos independientes.
+El diagrama también representa \texttt{servicio-\allowbreak usuarios}, la separación de datos por servicio y otros enlaces de comunicación que forman parte de la arquitectura objetivo. Estos elementos se identifican como previstos en el diseño y no como componentes cuya implementación haya quedado demostrada por la prueba de \mbox{INT-01}. La aplicación web original y el backend modular constituyen el punto de partida del proyecto; el prototipo distribuido permite comprobar la comunicación entre procesos independientes.
 
 
 
@@ -139,7 +134,7 @@ El SREI original parte de una arquitectura cliente-servidor: una aplicación web
 
 
 
-La separación no consiste únicamente en dividir el código en carpetas o clases. Para que exista distribución, los componentes deben poder ejecutarse como procesos independientes y comunicarse mediante un mecanismo definido. El prototipo desarrollado demuestra este principio con \texttt{servicio-eventos} y \texttt{servicio-consulta}. El primero ofrece una operación HTTP y el segundo la invoca mediante REST. Por tanto, la comunicación de \mbox{INT-01} constituye una interacción distribuida comprobada entre dos procesos, aunque no representa por sí sola la implementación completa de todos los contenedores del diagrama.
+La separación no consiste únicamente en dividir el código en carpetas o clases. Para que exista distribución, los componentes deben poder ejecutarse como procesos independientes y comunicarse mediante un mecanismo definido. El prototipo desarrollado demuestra este principio con \texttt{servicio-\allowbreak eventos} y \texttt{servicio-\allowbreak consulta}. El primero ofrece una operación HTTP y el segundo la invoca mediante REST. Por tanto, la comunicación de \mbox{INT-01} constituye una interacción distribuida comprobada entre dos procesos, aunque no representa por sí sola la implementación completa de todos los contenedores del diagrama.
 
 
 
@@ -151,7 +146,7 @@ Esta evolución tiene costos: requiere configurar varios procesos, puertos, dire
 
 
 
-La comunicación síncrona de \mbox{INT-01} también introduce una dependencia: si \texttt{servicio-eventos} no responde, \texttt{servicio-consulta} no puede completar una operación que requiera sus datos. Esta condición debe considerarse al evaluar la fiabilidad. La arquitectura deberá contemplar tiempos máximos de espera, manejo controlado de errores y pruebas de disponibilidad entre servicios.
+La comunicación síncrona de \mbox{INT-01} también introduce una dependencia: si \texttt{servicio-\allowbreak eventos} no responde, \texttt{servicio-\allowbreak consulta} no puede completar una operación que requiera sus datos. Esta condición debe considerarse al evaluar la fiabilidad. La arquitectura deberá contemplar tiempos máximos de espera, manejo controlado de errores y pruebas de disponibilidad entre servicios.
 
 
 
@@ -171,7 +166,7 @@ El artículo de SREI clasifica algunos requisitos con categorías distintas a la
 
 \setlength{\tabcolsep}{4pt}
 
-\begin{longtable}{p{1.4cm} p{2.5cm} p{3.3cm} p{2.5cm} p{2.3cm} p{2.3cm}}
+\begin{longtable}{P{1.4cm} P{2.5cm} P{3.3cm} P{2.5cm} P{2.3cm} P{2.3cm}}
 
 \caption{Requisitos no funcionales de SREI (ISO/IEC 25010:2023). Fuente: elaboración propia.}
 
@@ -197,17 +192,17 @@ ID & Característica & Condición de prueba & Métrica & Umbral & Fuente \\
 
 \endfoot
 
-RNF-01 & Eficiencia de desempeño (comportamiento temporal) & Con \texttt{servicio-eventos} y \texttt{servicio-consulta} en ejecución, enviar 30 peticiones GET al endpoint de consulta de eventos, después de una petición de calentamiento. Medición sobre el prototipo \mbox{INT-01}. & Tiempo de respuesta por petición, en segundos; promedio y máximo. & Máximo de 1.0\~s por petición. & PERS-002 / NRNF-006 (artículo de SREI, Tabla 15). \\
+RNF-01 & Eficiencia de desempeño (comportamiento temporal) & Con \texttt{servicio-\allowbreak eventos} y \texttt{servicio-\allowbreak consulta} en ejecución, enviar 30 peticiones GET al endpoint de consulta de eventos, después de una petición de calentamiento. Medición sobre el prototipo \mbox{INT-01}. & Tiempo de respuesta por petición, en segundos; promedio y máximo. & Máximo de 1.0~s por petición. & PERS-002 / NRNF-006 (artículo de SREI, Tabla 15). \\
 
-RNF-02 & Fiabilidad (tolerancia a fallos) & Detener \texttt{servicio-eventos} y enviar cinco peticiones desde \texttt{servicio-consulta} que requieran \mbox{INT-01}. & Código HTTP, mensaje recibido y tiempo de respuesta. & Respuesta 503 con mensaje claro en un máximo de 2\~s, sin detener el consumidor. & PERS-001 / NRNF-002 (artículo de SREI, Tabla 15). Umbral definido por el equipo. \\
+RNF-02 & Fiabilidad (tolerancia a fallos) & Detener \texttt{servicio-\allowbreak eventos} y enviar cinco peticiones desde \texttt{servicio-\allowbreak consulta} que requieran \mbox{INT-01}. & Código HTTP, mensaje recibido y tiempo de respuesta. & Respuesta 503 con mensaje claro en un máximo de 2~s, sin detener el consumidor. & PERS-001 / NRNF-002 (artículo de SREI, Tabla 15). Umbral definido por el equipo. \\
 
-RNF-03 & Flexibilidad (adaptabilidad) & Durante la evaluación de la aplicación web, abrirla en un dispositivo Android con Chrome a 360\~px y en una laptop con Chrome y Firefox a 1366\~px. & Visualización y funcionamiento de las pantallas principales en cada combinación. & Las pantallas se muestran y funcionan sin desplazamiento horizontal. & COMRS-001 / NRNF-005 (artículo de SREI, Tabla 17). Umbral definido por el equipo. \\
+RNF-03 & Flexibilidad (adaptabilidad) & Durante la evaluación de la aplicación web, abrirla en un dispositivo Android con Chrome a 360~px y en una laptop con Chrome y Firefox a 1366~px. & Visualización y funcionamiento de las pantallas principales en cada combinación. & Las pantallas se muestran y funcionan sin desplazamiento horizontal. & COMRS-001 / NRNF-005 (artículo de SREI, Tabla 17). Umbral definido por el equipo. \\
 
 RNF-04 & Seguridad (confidencialidad e integridad) & Durante las pruebas de seguridad, utilizar una cuenta de estudiante para intentar leer y modificar datos personales de otro usuario; repetir los intentos sin autenticación. & Códigos HTTP y comprobación de lectura o modificación de datos. & Rechazar el 100~\% de los intentos no autorizados mediante respuestas 401 o 403, sin exponer ni modificar datos. & SECRS-002 (artículo de SREI, Tabla 16). Umbral definido por el equipo. \\
 
 RNF-05 & Capacidad de interacción & Durante la evaluación de usabilidad, solicitar a 12 estudiantes que realicen tareas habituales en la aplicación y respondan el cuestionario SUS de 10 preguntas. & Puntaje SUS promedio, en escala de 0 a 100. & Promedio mínimo de 70 puntos. & USARS-001 / NRNF-001 (artículo de SREI). El valor 79.79 del sistema original es una referencia, no un resultado de esta evaluación. \\
 
-RNF-06 & Mantenibilidad (modularidad) & Ejecutar \texttt{servicio-eventos} y \texttt{servicio-consulta} como procesos separados; comprobar la respuesta del proveedor y el uso de esa respuesta por el consumidor. & Respuesta HTTP del proveedor y resultado obtenido por el consumidor. & El proveedor responde correctamente y el consumidor procesa la respuesta mediante \mbox{INT-01}. & Definido por el equipo; relacionado con las consecuencias de modularidad del ADR-001. \\
+RNF-06 & Mantenibili-\allowbreak dad (modularidad) & Ejecutar \texttt{servicio-\allowbreak eventos} y \texttt{servicio-\allowbreak consulta} como procesos separados; comprobar la respuesta del proveedor y el uso de esa respuesta por el consumidor. & Respuesta HTTP del proveedor y resultado obtenido por el consumidor. & El proveedor responde correctamente y el consumidor procesa la respuesta mediante \mbox{INT-01}. & Definido por el equipo; relacionado con las consecuencias de modularidad del ADR-001. \\
 
 \end{longtable}
 }
@@ -216,7 +211,7 @@ RNF-06 & Mantenibilidad (modularidad) & Ejecutar \texttt{servicio-eventos} y \te
 
 Los umbrales de la tabla establecen condiciones para la evaluación. Para declarar un requisito como cumplido se debe conservar el resultado de la prueba correspondiente, junto con su fecha, configuración y evidencia. En particular, el puntaje SUS de 79.79 corresponde al SREI original y se utiliza únicamente como referencia, no como medición realizada para el PFC.
 
-En esta primera entrega se verificó el funcionamiento descrito en RNF-06 mediante la ejecución independiente de \texttt{servicio-eventos} y \texttt{servicio-consulta}, la consulta directa al proveedor y la comprobación de que el consumidor recibe y utiliza la información. Las capturas de estas pruebas se conservan en \texttt{evidencias/ejecucion/}. Los demás requisitos permanecen sujetos a sus respectivas pruebas de evaluación; sus umbrales no se consideran resultados medidos.
+En esta primera entrega se verificó el funcionamiento descrito en RNF-06 mediante la ejecución independiente de \texttt{servicio-\allowbreak eventos} y \texttt{servicio-\allowbreak consulta}, la consulta directa al proveedor y la comprobación de que el consumidor recibe y utiliza la información. Las capturas de estas pruebas se conservan en \texttt{evidencias/ejecucion/}. Los demás requisitos permanecen sujetos a sus respectivas pruebas de evaluación; sus umbrales no se consideran resultados medidos.
 
 
 
@@ -230,35 +225,40 @@ El teorema CAP establece que, ante una partición de red, un sistema distribuido
 
 
 
-La Tabla~\ref{tab:cap} presenta las decisiones propuestas para los datos críticos del sistema. Se considera la arquitectura objetivo, en la que cada servicio administrará sus propios datos. Esta separación todavía no está implementada en todos los componentes: la prueba de comunicación \mbox{INT-01} únicamente demuestra el intercambio de información entre \texttt{servicio-consulta} y \texttt{servicio-eventos}.
+La Tabla~\ref{tab:cap} presenta las decisiones propuestas para los datos críticos del sistema. Se considera la arquitectura objetivo, en la que cada servicio administrará sus propios datos. Esta separación todavía no está implementada en todos los componentes: la prueba de comunicación \mbox{INT-01} únicamente demuestra el intercambio de información entre \texttt{servicio-\allowbreak consulta} y \texttt{servicio-\allowbreak eventos}.
 
 
 
-\begin{table}[H]
+\clearpage
+{\small
+\setlength{\tabcolsep}{3pt}
+\begin{longtable}{P{2.3cm} P{2.4cm} P{2.3cm} P{2.3cm} P{4.8cm}}
 
-\centering
 
-\small
-
-\setlength{\tabcolsep}{4pt}
 
 \caption{Análisis CAP y PACELC de los datos críticos de SREI. Fuente: elaboración propia.}
 
-\label{tab:cap}
+\label{tab:cap}\\
 
-\begin{tabular}{p{2.6cm} p{2.3cm} p{2.4cm} p{2.4cm} p{4.4cm}}
+
 
 \toprule
 
 Dato crítico & Ubicación en la arquitectura objetivo & Con partición (CAP) & Sin partición (PACELC) & Justificación \\
 
 \midrule
+\endfirsthead
+\toprule
+Dato crítico & Ubicación en la arquitectura objetivo & Con partición (CAP) & Sin partición (PACELC) & Justificación \\
+\midrule
+\endhead
+
 
 
 
 Estado de los eventos (propuesto, aprobado, publicado) &
 
-Base de datos propia de \texttt{servicio-eventos} (prevista). &
+Base de datos propia de \texttt{servicio-\allowbreak eventos} (prevista). &
 
 P-C: priorizar consistencia y rechazar la consulta si no se puede verificar el estado. &
 
@@ -282,25 +282,25 @@ Si queda un solo cupo y llegan dos solicitudes simultáneas, solo una debe confi
 
 Usuarios y credenciales &
 
-Base de datos propia de \texttt{servicio-usuarios} (prevista). &
+Base de datos propia de \texttt{servicio-\allowbreak usuarios} (prevista). &
 
 P-C: rechazar la operación si no se puede validar la identidad o los permisos. &
 
 E-C: consultar la información vigente antes de autorizar una operación protegida. &
 
-Un usuario deshabilitado o con un rol modificado no debe continuar operando con información desactualizada. Se prevé que los componentes que necesiten validar usuarios consulten a \texttt{servicio-usuarios} mediante \mbox{INT-02}. Esto agrega una comunicación adicional, pero permite utilizar información actualizada. \\
+Un usuario deshabilitado o con un rol modificado no debe continuar operando con información desactualizada. Se prevé que los componentes que necesiten validar usuarios consulten a \texttt{servicio-\allowbreak usuarios} mediante \mbox{INT-02}. Esto agrega una comunicación adicional, pero permite utilizar información actualizada. \\
 
 
 
 \bottomrule
 
-\end{tabular}
+\end{longtable}
 
-\end{table}
+}
 
 
 
-Las decisiones anteriores representan criterios de diseño para la arquitectura objetivo y no resultados de pruebas ya realizadas. En particular, la separación de bases de datos, el control de inscripciones y la comunicación con \texttt{servicio-usuarios} deberán verificarse conforme se implementen los componentes correspondientes.
+Las decisiones anteriores representan criterios de diseño para la arquitectura objetivo y no resultados de pruebas ya realizadas. En particular, la separación de bases de datos, el control de inscripciones y la comunicación con \texttt{servicio-\allowbreak usuarios} deberán verificarse conforme se implementen los componentes correspondientes.
 
 
 
@@ -324,7 +324,7 @@ La Tabla~\ref{tab:riesgos} recoge cinco riesgos relacionados con la comunicació
 
 \setlength{\tabcolsep}{4pt}
 
-\begin{longtable}{p{0.06\textwidth} p{0.30\textwidth} p{0.10\textwidth} p{0.10\textwidth} p{0.34\textwidth}}
+\begin{longtable}{P{0.06\textwidth} P{0.30\textwidth} P{0.10\textwidth} P{0.10\textwidth} P{0.34\textwidth}}
 
 \caption{Riesgos de arquitectura de SREI. Fuente: elaboración propia.}
 
@@ -350,13 +350,13 @@ ID & Riesgo & Prob. & Impacto & Tratamiento \\
 
 \endfoot
 
-R-01 & La dirección o el puerto configurado para que \texttt{servicio-consulta} encuentre a \texttt{servicio-eventos} es incorrecto. Esto impediría completar \mbox{INT-01}. & Media & Alta & Mantener la dirección del proveedor en la configuración del consumidor y documentar los valores requeridos. Si los servicios se ejecutan en contenedores, utilizar el nombre del servicio dentro de la red de contenedores en lugar de \texttt{localhost}. \\
+R-01 & La dirección o el puerto configurado para que \texttt{servicio-\allowbreak consulta} encuentre a \texttt{servicio-\allowbreak eventos} es incorrecto. Esto impediría completar \mbox{INT-01}. & Media & Alta & Mantener la dirección del proveedor en la configuración del consumidor y documentar los valores requeridos. Si los servicios se ejecutan en contenedores, utilizar el nombre del servicio dentro de la red de contenedores en lugar de \texttt{localhost}. \\
 
 R-02 & Una modificación del esquema de datos de un servicio provoca incompatibilidades o pérdida de información. & Media & Alta & Establecer un mecanismo de versionado y aplicación controlada de cambios en las bases de datos. Antes de modificaciones que puedan afectar la información, generar y verificar respaldos. La administración independiente de datos corresponde a la arquitectura objetivo. \\
 
 R-03 & Una nueva versión de un servicio presenta errores durante su despliegue. & Media & Media & En caso de utilizar contenedores, etiquetar las imágenes y conservar versiones anteriores para permitir una reversión controlada. Comprobar la disponibilidad y el funcionamiento del servicio después de cada actualización. \\
 
-R-04 & Si \texttt{servicio-eventos} se detiene o tarda demasiado, \texttt{servicio-consulta} no puede completar las operaciones que dependen de \mbox{INT-01}. & Media & Alta & Incorporar tiempos máximos de espera, manejo de excepciones y respuestas HTTP controladas. Estas medidas deberán verificarse mediante las pruebas asociadas a RNF-02. \\
+R-04 & Si \texttt{servicio-\allowbreak eventos} se detiene o tarda demasiado, \texttt{servicio-\allowbreak consulta} no puede completar las operaciones que dependen de \mbox{INT-01}. & Media & Alta & Incorporar tiempos máximos de espera, manejo de excepciones y respuestas HTTP controladas. Estas medidas deberán verificarse mediante las pruebas asociadas a RNF-02. \\
 
 R-05 & El servicio externo de IA generativa tarda demasiado o deja de responder durante la generación de imágenes. & Media & Media & Aislar la integración de IA en el componente responsable de la creación de eventos, establecer un tiempo máximo de espera y conservar la alternativa de que el usuario proporcione una imagen propia. \\
 
@@ -366,7 +366,7 @@ R-05 & El servicio externo de IA generativa tarda demasiado o deja de responder 
 
 \subsection{Resultados de las mediciones del prototipo}
 \label{sec:resultados}
-Medimos tres requisitos sobre el prototipo actual, en local, en el equipo WASHING-PC. Las pruebas se hicieron el 22/11/2026, entre las 17:41 y las 18:02, con PowerShell 5.1, Java 21.0.13 y Spring Boot 4.1.3. El prototipo solo implementa \mbox{INT-01}, con una respuesta mínima y sin base de datos, así que estos tiempos no representan al sistema completo. Por eso \mbox{RNF-01} se volverá a medir en la Entrega~2, con la confirmación de asistencia. Las capturas están en \texttt{evidencias/ejecucion/}. Las de \texttt{washington-01} a \texttt{washington-03} muestran que los dos servicios arrancan y que \mbox{INT-01} responde. La Tabla~\ref{tab:resultados} resume las mediciones.
+Se midieron tres requisitos sobre el prototipo actual, en local, en el equipo WASHING-PC. Las pruebas se hicieron el 22/11/2026, entre las 17:41 y las 18:02, con PowerShell 5.1, Java 21.0.13 y Spring Boot 4.1.3. El prototipo solo implementa \mbox{INT-01}, con una respuesta mínima y sin base de datos, así que estos tiempos no representan al sistema completo. Por eso \mbox{RNF-01} se volverá a medir en la Entrega~2, con la confirmación de asistencia. Las capturas están en \texttt{evidencias/ejecucion/}. Las de \texttt{washington-01} a \texttt{washington-03} muestran que los dos servicios arrancan y que \mbox{INT-01} responde. La Tabla~\ref{tab:resultados} resume las mediciones.
 
 \begin{table}[H]
 \centering
@@ -374,20 +374,13 @@ Medimos tres requisitos sobre el prototipo actual, en local, en el equipo WASHIN
 \setlength{\tabcolsep}{4pt}
 \caption{Resultados de las mediciones del prototipo (22/11/2026, WASHING-PC). Fuente: elaboración propia.}
 \label{tab:resultados}
-\begin{tabular}{p{0.09\textwidth} p{0.43\textwidth} p{0.18\textwidth} p{0.20\textwidth}}
+\begin{tabular}{P{0.09\textwidth} P{0.43\textwidth} P{0.18\textwidth} P{0.20\textwidth}}
 \toprule
 RNF & Lo medido & Estado & Evidencia \\
 \midrule
 \mbox{RNF-01} & 30 peticiones GET a /api\slash consultas\slash evento, después de una de calentamiento. Promedio 0.0046~s y máximo 0.0148~s (umbral: máximo 1.0~s, deseable 0.1~s). & Cumple & \texttt{washington-04} \\
 \mbox{RNF-06} & Con solo servicio-eventos encendido, GET a /api\slash eventos\slash prueba respondió 200. Con servicio-eventos apagado, servicio-consulta arrancó sola en el puerto~8081. & Cumple & \texttt{washington-05}, \texttt{washington-06} y \texttt{washington-07} \\
-\mbox{RNF-02} & Con servicio-eventos apagado, las 5 peticiones a /api\slash consultas\slash evento recibieron un error 500, entre 0.005 y 0.16~s. servicio-consulta siguió respondiendo. & No se cumple todavía. Falta el 503 con mensaje claro (\mbox{R-04}). & \texttt{washington-07} \\
+\mbox{RNF-02} & Con servicio-eventos apagado, las 5 peticiones a /api\slash consultas\slash evento recibieron un error 500, entre 0.005 y 0.16~s. servicio-consulta siguió respondiendo. & Resultado fuera del umbral: respuesta 500 en lugar de 503 (\mbox{R-04}). & \texttt{washington-07} \\
 \bottomrule
 \end{tabular}
 \end{table}
-
-
-\subsection{Uso de inteligencia artificial en esta sección}
-\label{sec:uso-ia-washington}
-Para esta sección usé Claude Sonnet 5.5 (Anthropic). La usé como guía para el manejo de comandos de GitHub y la navegación dentro del repositorio, el uso de comandos en PowerShell, la verificación de ortografía y gramática en la redacción del informe, y como apoyo en los comandos necesarios para ejecutar pruebas y diagnosticar errores durante el desarrollo.
-
-Lo que hice y comprobé por mi cuenta: Ejecutar directamente todos los comandos en PowerShell y GitHub, navegar y gestionar los archivos del repositorio, correr las pruebas locales, corregir los errores reportados, capturar las evidencias de funcionamiento y validar la redacción final de la sección.
