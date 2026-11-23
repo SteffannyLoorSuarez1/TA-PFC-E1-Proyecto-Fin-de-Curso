@@ -238,3 +238,6 @@ Cada integrante trabaja en sus propias ramas (`washington/...`, `jordan/...`, `s
 ## Uso de inteligencia artificial
 
 El uso de herramientas de IA en cada parte del trabajo se declara en el informe (`docs/main.pdf`). 
+## Video de presentación
+
+[Ver video de presentación del proyecto](https://www.youtube.com/watch?v=qMHa4GX2Aow)
