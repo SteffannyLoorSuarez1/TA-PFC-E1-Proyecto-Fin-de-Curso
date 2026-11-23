@@ -1,6 +1,6 @@
 # ADR-002: Comunicación entre servicios mediante REST/HTTP
 
-**Estado:** Propuesta para validar con el equipo
+**Estado:** Aceptado
 
 **Fecha:** 20 de noviembre de 2026
 
@@ -28,7 +28,7 @@ La mensajería asíncrona permite intercambiar mensajes mediante un intermediari
 
 ## 3. Decisión
 
-Por ahora se propone utilizar **REST sobre HTTP con comunicación síncrona** para la consulta de eventos.
+Se decidió utilizar **REST sobre HTTP con comunicación síncrona** para la consulta de eventos. Esta decisión fue implementada y comprobada mediante la interacción INT-01 entre el servicio de consulta y el servicio de eventos.
 
 El servicio consumidor realiza una petición HTTP al servicio proveedor y espera su respuesta antes de continuar. Los datos se intercambian en formato JSON.
 
@@ -61,6 +61,22 @@ El servicio de eventos entrega un registro identificado como dato de prueba. El 
 
 ## 5. Verificación
 
-Se ejecutaron ambos servicios de forma independiente y se realizaron peticiones HTTP desde PowerShell mediante `Invoke-RestMethod`.
+Se ejecutaron los servicios `servicio-eventos` y `servicio-consulta` como procesos independientes utilizando los puertos 8080 y 8081, respectivamente.
 
-En la prueba se confirmó que el proveedor respondió con información JSON y que el consumidor recuperó y utilizó los campos del evento.
+Se comprobó mediante solicitudes HTTP que el proveedor devuelve un evento de prueba en formato JSON con código HTTP 200. También se verificó que el consumidor consulta al proveedor mediante REST/HTTP síncrono (INT-01), recupera los datos del evento y los utiliza para construir su propia respuesta HTTP 200.
+
+Para comprobar el comportamiento en caso de la indisponibilidad del proveedor (RNF-02) se detuvo `servicio-eventos` y se mantuvo funcionando `servicio-consulta`, se configuraron tiempos de espera de 500 ms para la conexión y 1000 ms para la lectura.
+
+Se realizaron cinco solicitudes al consumidor con el proveedor apagado. Todas devolvieron HTTP 503 y un mensaje JSON indicando que el servicio de eventos no estaba disponible.
+
+| Prueba | Código HTTP | Tiempo de respuesta |
+|---|---|---|
+| 1 | 503 | 58,45 ms |
+| 2 | 503 | 31,54 ms |
+| 3 | 503 | 28,97 ms |
+| 4 | 503 | 27,60 ms |
+| 5 | 503 | 31,79 ms |
+
+El tiempo máximo observado fue de 58,45 ms, inferior al umbral de 2000 ms establecido para esta prueba. Estos resultados corresponden a una ejecución local con el proveedor apagado y no garantizan el mismo tiempo en otros escenarios de fallo.
+
+Las evidencias se encuentran en `evidencias/ejecucion/`, en las capturas identificadas con el prefijo `steffanny-`.
